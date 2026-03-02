@@ -16,6 +16,15 @@ export type {
   SemanticZoomConfig,
   SemanticZoomEvent,
 } from './SemanticZoom';
+export type {
+  CulledElementRef,
+  ViewportCullingConfig,
+  ViewportCullingElementKind,
+  ViewportCullingEvent,
+  ViewportCullingEventPayload,
+  ViewportCullingResult,
+} from './ViewportCulling';
 export { FitToView, fitBoundsWithPadding } from './FitToView';
 export { SemanticZoom } from './SemanticZoom';
+export { ViewportCulling, deriveViewportBounds, normalizeCullingIds } from './ViewportCulling';
 export { ViewportController } from './ViewportController';

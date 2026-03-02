@@ -316,8 +316,8 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Test transition performance (within 200ms)
     - _Requirements: 11.1-11.8_
 
-- [ ] 16. Implement viewport culling
-  - [ ] 16.1 Create ViewportCulling class
+- [x] 16. Implement viewport culling
+  - [x] 16.1 Create ViewportCulling class
     - Implement constructor with culling configuration
     - Implement buildIndex() to construct R-tree from positioned graph
     - Implement queryVisible() to find elements intersecting viewport bounds
@@ -326,12 +326,12 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Update culled element set within 16ms when viewport changes
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
   
-  - [ ]* 16.2 Write property tests for viewport culling
+  - [x]* 16.2 Write property tests for viewport culling
     - **Property 31: Viewport Culling Activation** - Validates: Requirements 12.1
     - **Property 32: Viewport Culling Correctness** - Validates: Requirements 12.3
     - **Property 33: Viewport Culling Buffer** - Validates: Requirements 12.6
   
-  - [ ]* 16.3 Write unit tests for viewport culling
+  - [x]* 16.3 Write unit tests for viewport culling
     - Test culling activation threshold
     - Test visible element query correctness
     - Test buffer margin application
