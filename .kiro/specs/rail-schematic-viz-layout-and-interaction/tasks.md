@@ -397,8 +397,8 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Test hover state update performance
     - _Requirements: 14.1-14.7_
 
-- [ ] 20. Implement selection engine
-  - [ ] 20.1 Create SelectionEngine class
+- [x] 20. Implement selection engine
+  - [x] 20.1 Create SelectionEngine class
     - Implement constructor with selection configuration
     - Implement select(), deselect(), toggle(), clearSelection() methods
     - Implement isSelected() and getSelection() query methods
@@ -408,13 +408,13 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Support single, multi, and brush selection modes
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7_
   
-  - [ ]* 20.2 Write property tests for selection engine
+  - [x]* 20.2 Write property tests for selection engine
     - **Property 37: Selection State Click** - Validates: Requirements 15.1
     - **Property 38: Selection State Background Click** - Validates: Requirements 15.2
     - **Property 39: Selection State Shift-Click Toggle** - Validates: Requirements 15.3
     - **Property 40: Selection Style Application** - Validates: Requirements 15.4
   
-  - [ ]* 20.3 Write unit tests for selection engine
+  - [x]* 20.3 Write unit tests for selection engine
     - Test element selection on click
     - Test background click clears selection
     - Test shift-click toggle
