@@ -47,9 +47,18 @@ export type {
   SelectionMode,
   SelectionStylableTarget,
 } from './SelectionEngine';
+export type {
+  TouchEventLike,
+  TouchGestureState,
+  TouchGesturesConfig,
+  TouchGesturesRoot,
+  TouchPointLike,
+  TouchViewportAdapter,
+} from './TouchGestures';
 export { BrushSelection } from './BrushSelection';
 export { EventManager } from './EventManager';
 export { HoverInteraction } from './HoverInteraction';
 export { KeyboardNavigation, keyboardNavigationInternals } from './KeyboardNavigation';
 export { KeyboardShortcuts } from './KeyboardShortcuts';
 export { SelectionEngine } from './SelectionEngine';
+export { TouchGestures } from './TouchGestures';

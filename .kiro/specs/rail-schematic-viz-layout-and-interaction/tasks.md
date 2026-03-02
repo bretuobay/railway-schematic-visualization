@@ -515,8 +515,8 @@ The implementation follows a layered approach: layout engine and strategies firs
 - [x] 24. Checkpoint - Ensure interaction and keyboard tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 25. Implement touch gesture support
-  - [ ] 25.1 Create TouchGestures class
+- [x] 25. Implement touch gesture support
+  - [x] 25.1 Create TouchGestures class
     - Support pinch-to-zoom gesture on touch devices
     - Support two-finger pan gesture on touch devices
     - Support tap gesture equivalent to click
@@ -526,11 +526,11 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Support configurable gesture sensitivity and thresholds
     - _Requirements: 27.1, 27.2, 27.3, 27.4, 27.5, 27.6, 27.7_
   
-  - [ ]* 25.2 Write property tests for touch gestures
+  - [x]* 25.2 Write property tests for touch gestures
     - **Property 67: Touch Gesture Mapping** - Validates: Requirements 27.1, 27.2, 27.3, 27.4
     - **Property 68: Touch Event Default Prevention** - Validates: Requirements 27.5
   
-  - [ ]* 25.3 Write unit tests for touch gestures
+  - [x]* 25.3 Write unit tests for touch gestures
     - Test pinch-to-zoom gesture
     - Test two-finger pan gesture
     - Test tap gesture
