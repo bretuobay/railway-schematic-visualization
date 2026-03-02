@@ -181,25 +181,25 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Test label collision resolution
     - _Requirements: 7.1-7.7_
 
-- [ ] 10. Implement layout export and import
-  - [ ] 10.1 Implement exportLayout in LayoutEngine
+- [x] 10. Implement layout export and import
+  - [x] 10.1 Implement exportLayout in LayoutEngine
     - Return layout data as JSON with node positions, edge geometries, layout mode
     - Include timestamp in exported data
     - _Requirements: 28.1, 28.2_
   
-  - [ ] 10.2 Implement importLayout in LayoutEngine
+  - [x] 10.2 Implement importLayout in LayoutEngine
     - Validate that node IDs match current RailGraph
     - Support partial layout import (apply positions for matching nodes only)
     - Emit events when layout is exported or imported
     - _Requirements: 28.3, 28.4, 28.5, 28.7_
   
-  - [ ]* 10.3 Write property tests for layout export/import
+  - [x]* 10.3 Write property tests for layout export/import
     - **Property 58: Layout Export Completeness** - Validates: Requirements 28.2
     - **Property 59: Layout Import Validation** - Validates: Requirements 28.4
     - **Property 60: Layout Import Partial Application** - Validates: Requirements 28.5
     - **Property 61: Layout Export-Import Round-Trip** - Validates: Requirements 28.6
   
-  - [ ]* 10.4 Write unit tests for layout export/import
+  - [x]* 10.4 Write unit tests for layout export/import
     - Test export includes all required fields
     - Test import with matching node IDs
     - Test import with mismatched node IDs

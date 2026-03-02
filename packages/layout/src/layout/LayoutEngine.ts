@@ -135,6 +135,10 @@ export class LayoutEngine {
   }
 
   public importLayout(graph: RailGraph, data: LayoutData): PositionedGraph {
+    if (!this.hasMatchingNodeIds(graph, data)) {
+      throw new Error('Layout import does not contain any matching node IDs.');
+    }
+
     const positions = new Map<NodeId, ScreenCoordinate>();
 
     for (const node of graph.nodes.values()) {
@@ -149,9 +153,12 @@ export class LayoutEngine {
         continue;
       }
 
-      if (node.coordinate.type === CoordinateSystemType.Screen) {
-        positions.set(node.id, node.coordinate);
-      }
+      positions.set(
+        node.id,
+        node.coordinate.type === CoordinateSystemType.Screen
+          ? node.coordinate
+          : { type: CoordinateSystemType.Screen, x: 0, y: 0 },
+      );
     }
 
     const geometries = new Map<EdgeId, ReadonlyArray<ScreenCoordinate>>();
@@ -185,6 +192,16 @@ export class LayoutEngine {
     this.emit('layout-import', { data, positionedGraph });
 
     return positionedGraph;
+  }
+
+  private hasMatchingNodeIds(graph: RailGraph, data: LayoutData): boolean {
+    for (const nodeId of Object.keys(data.nodePositions)) {
+      if (graph.nodes.has(nodeId as NodeId)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private assertNoOverlap(positions: ReadonlyMap<NodeId, ScreenCoordinate>): void {
