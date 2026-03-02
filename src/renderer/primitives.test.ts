@@ -26,4 +26,31 @@ describe('track primitives', () => {
       ),
     ).toContain('M 0 0');
   });
+
+  it('renders all switch template variants', () => {
+    expect(
+      generateSwitchPath(
+        start,
+        end,
+        { type: 'switch', switchType: 'right_turnout', orientation: 0 },
+        1,
+      ),
+    ).toContain('L');
+    expect(
+      generateSwitchPath(
+        start,
+        end,
+        { type: 'switch', switchType: 'single_crossover', orientation: 0 },
+        1,
+      ),
+    ).toContain('M 0 0');
+    expect(
+      generateSwitchPath(
+        start,
+        end,
+        { type: 'switch', switchType: 'double_crossover', orientation: 0 },
+        1,
+      ),
+    ).toContain('M 0 0 L 20 10');
+  });
 });
