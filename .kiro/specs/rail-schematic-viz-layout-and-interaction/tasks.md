@@ -540,8 +540,8 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Test performance (60 FPS)
     - _Requirements: 27.1-27.7_
 
-- [ ] 26. Implement minimap component
-  - [ ] 26.1 Create Minimap class
+- [x] 26. Implement minimap component
+  - [x] 26.1 Create Minimap class
     - Implement constructor accepting container, graph, viewport controller, and configuration
     - Render inset overview of complete schematic
     - Display rectangle indicating current viewport position and extent
@@ -550,7 +550,7 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Support toggling visibility via configuration
     - _Requirements: 19.1, 19.2, 19.3, 19.7, 19.8_
   
-  - [ ] 26.2 Implement minimap interactions
+  - [x] 26.2 Implement minimap interactions
     - Pan main viewport to clicked location when user clicks on minimap
     - Update main viewport in real-time when user drags viewport rectangle
     - Highlight viewport indicator on hover
@@ -561,13 +561,13 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Update within 100ms when main viewport changes
     - _Requirements: 19.4, 19.5, 19.6, 20.1, 20.2, 20.3, 20.4, 20.5, 20.6, 20.7_
   
-  - [ ]* 26.3 Write property tests for minimap
+  - [x]* 26.3 Write property tests for minimap
     - **Property 52: Minimap Viewport Indicator** - Validates: Requirements 19.2
     - **Property 53: Minimap Click Navigation** - Validates: Requirements 19.4, 20.1
     - **Property 54: Minimap Drag Navigation** - Validates: Requirements 19.5, 20.2
     - **Property 55: Minimap Event Isolation** - Validates: Requirements 20.5
   
-  - [ ]* 26.4 Write unit tests for minimap
+  - [x]* 26.4 Write unit tests for minimap
     - Test minimap rendering
     - Test viewport indicator display
     - Test click navigation
