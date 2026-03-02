@@ -14,6 +14,31 @@ export type {
   HoverTooltipState,
 } from './HoverInteraction';
 export type {
+  BrushModifierKey,
+  BrushSelectableElement,
+  BrushSelectionConfig,
+  BrushSelectionEvent,
+  BrushSelectionMode,
+  BrushSelectionPayload,
+  BrushSelectionState,
+} from './BrushSelection';
+export type {
+  ActivationPayload,
+  FocusChangePayload,
+  KeyboardNavigableElement,
+  KeyboardNavigableTarget,
+  KeyboardNavigationConfig,
+  KeyboardNavigationEvent,
+  NavigationDirection,
+} from './KeyboardNavigation';
+export type {
+  KeyboardShortcutDefinition,
+  KeyboardShortcutEventLike,
+  KeyboardShortcutReference,
+  KeyboardShortcutsConfig,
+  KeyboardShortcutsRoot,
+} from './KeyboardShortcuts';
+export type {
   SelectionChangePayload,
   SelectionClickOptions,
   SelectionElementRegistration,
@@ -22,6 +47,9 @@ export type {
   SelectionMode,
   SelectionStylableTarget,
 } from './SelectionEngine';
+export { BrushSelection } from './BrushSelection';
 export { EventManager } from './EventManager';
 export { HoverInteraction } from './HoverInteraction';
+export { KeyboardNavigation, keyboardNavigationInternals } from './KeyboardNavigation';
+export { KeyboardShortcuts } from './KeyboardShortcuts';
 export { SelectionEngine } from './SelectionEngine';
