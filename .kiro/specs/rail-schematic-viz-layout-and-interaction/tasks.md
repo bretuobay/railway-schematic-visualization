@@ -228,8 +228,8 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Test bounding box intersection
     - _Requirements: 12.4_
 
-- [ ] 13. Implement viewport controller and behaviors
-  - [ ] 13.1 Create ViewportController class
+- [x] 13. Implement viewport controller and behaviors
+  - [x] 13.1 Create ViewportController class
     - Implement constructor accepting SVG element and configuration
     - Integrate D3 zoom and drag behaviors
     - Maintain viewport transform state (x, y, scale)
@@ -237,14 +237,14 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Implement event emitter for pan, zoom, transform, viewport-change events
     - _Requirements: 8.1, 9.1, 24.1_
   
-  - [ ] 13.2 Implement pan operations
+  - [x] 13.2 Implement pan operations
     - Implement panTo() and panBy() methods with animation support
     - Support configurable pan extent limits
     - Emit pan events containing new viewport position
     - Ensure smooth panning with 60 FPS performance
     - _Requirements: 8.2, 8.3, 8.4, 8.5, 8.6, 8.7_
   
-  - [ ] 13.3 Implement zoom operations
+  - [x] 13.3 Implement zoom operations
     - Implement zoomTo(), zoomBy(), and zoomToPoint() methods
     - Support configurable minimum and maximum zoom scale bounds
     - Zoom toward cursor position (zoom-to-point behavior)
@@ -252,12 +252,12 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Ensure smooth zooming with 60 FPS performance
     - _Requirements: 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8_
   
-  - [ ]* 13.4 Write property tests for viewport controller
+  - [x]* 13.4 Write property tests for viewport controller
     - **Property 20: Pan Extent Bounds** - Validates: Requirements 8.3
     - **Property 21: Zoom Scale Bounds** - Validates: Requirements 9.2
     - **Property 22: Zoom-to-Point Invariance** - Validates: Requirements 9.3
   
-  - [ ]* 13.5 Write unit tests for viewport controller
+  - [x]* 13.5 Write unit tests for viewport controller
     - Test pan operations with and without animation
     - Test zoom operations with and without animation
     - Test pan extent limits
