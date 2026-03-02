@@ -20,6 +20,51 @@
       "types": "./dist/layout/index.d.ts",
       "import": "./dist/layout/index.js",
       "require": "./dist/layout/index.cjs"
+    },
+    "./viewport": {
+      "types": "./dist/viewport/index.d.ts",
+      "import": "./dist/viewport/index.js",
+      "require": "./dist/viewport/index.cjs"
+    },
+    "./interactions": {
+      "types": "./dist/interactions/index.d.ts",
+      "import": "./dist/interactions/index.js",
+      "require": "./dist/interactions/index.cjs"
+    },
+    "./minimap": {
+      "types": "./dist/minimap/index.d.ts",
+      "import": "./dist/minimap/index.js",
+      "require": "./dist/minimap/index.cjs"
+    },
+    "./performance": {
+      "types": "./dist/performance/index.d.ts",
+      "import": "./dist/performance/index.js",
+      "require": "./dist/performance/index.cjs"
+    },
+    "./animation": {
+      "types": "./dist/animation/index.d.ts",
+      "import": "./dist/animation/index.js",
+      "require": "./dist/animation/index.cjs"
+    },
+    "./accessibility": {
+      "types": "./dist/accessibility/index.d.ts",
+      "import": "./dist/accessibility/index.js",
+      "require": "./dist/accessibility/index.cjs"
+    },
+    "./validation": {
+      "types": "./dist/validation/index.d.ts",
+      "import": "./dist/validation/index.js",
+      "require": "./dist/validation/index.cjs"
+    },
+    "./errors": {
+      "types": "./dist/errors/index.d.ts",
+      "import": "./dist/errors/index.js",
+      "require": "./dist/errors/index.cjs"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js",
+      "require": "./dist/types/index.cjs"
     }
   },
   "scripts": {

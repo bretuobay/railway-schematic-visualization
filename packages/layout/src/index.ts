@@ -5,3 +5,6 @@ export * from './interactions';
 export * from './components';
 export * from './performance';
 export * from './animation';
+export * from './accessibility';
+export * from './validation';
+export * from './errors';
