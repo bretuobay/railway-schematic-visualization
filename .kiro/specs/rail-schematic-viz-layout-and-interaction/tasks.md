@@ -163,19 +163,19 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Test performance with 500 nodes (within 5 seconds)
     - _Requirements: 6.1-6.9_
 
-- [ ] 9. Implement layout optimization utilities
-  - [ ] 9.1 Create LayoutOptimizer class
+- [x] 9. Implement layout optimization utilities
+  - [x] 9.1 Create LayoutOptimizer class
     - Implement edge crossing minimization algorithm
     - Implement label collision detection and resolution
     - Apply configurable padding around network bounds
     - Support manual position overrides for specific nodes
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7_
   
-  - [ ]* 9.2 Write property tests for layout optimization
+  - [x]* 9.2 Write property tests for layout optimization
     - **Property 18: Layout Bounds Padding** - Validates: Requirements 7.5
     - **Property 19: Manual Position Overrides** - Validates: Requirements 7.6
   
-  - [ ]* 9.3 Write unit tests for layout optimization
+  - [x]* 9.3 Write unit tests for layout optimization
     - Test padding application
     - Test manual override application
     - Test label collision resolution

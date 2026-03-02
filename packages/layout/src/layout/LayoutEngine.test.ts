@@ -1,5 +1,6 @@
 import fc from 'fast-check';
 import {
+  asNodeId,
   CoordinateSystemType,
   GraphBuilder,
   type RailGraph,
@@ -99,9 +100,22 @@ describe('LayoutEngine', () => {
 
   it('rejects overlapping layouts', async () => {
     const graph = makeLinearGraph([1]);
-    const engine = new LayoutEngine(new ProportionalLayout({ scaleFactor: 0 }), {
-      overlapThreshold: 100,
-    });
+    const engine = new LayoutEngine(
+      new ProportionalLayout({ scaleFactor: 0 }),
+      {
+        overlapThreshold: 100,
+        manualOverrides: new Map([
+          [
+            asNodeId('node-0'),
+            { type: CoordinateSystemType.Screen, x: 24, y: 24 } as const,
+          ],
+          [
+            asNodeId('node-1'),
+            { type: CoordinateSystemType.Screen, x: 24, y: 24 } as const,
+          ],
+        ]),
+      },
+    );
 
     await expect(engine.layout(graph)).rejects.toThrow('overlapping');
   });

@@ -10,6 +10,7 @@ import {
   PositionedGraph,
   buildPositionedGraph,
 } from './PositionedGraph';
+import { LayoutOptimizer } from './LayoutOptimizer';
 import type {
   LayoutConfiguration,
   LayoutData,
@@ -41,6 +42,7 @@ const DEFAULT_CONFIGURATION: LayoutConfiguration = {
 export class LayoutEngine {
   private strategy: LayoutStrategy;
   private configuration: LayoutConfiguration;
+  private readonly optimizer: LayoutOptimizer;
   private readonly handlers = new Map<LayoutEvent, Set<LayoutEventHandler>>();
   private lastLayout: PositionedGraph | undefined;
 
@@ -49,6 +51,7 @@ export class LayoutEngine {
     configuration: Partial<LayoutConfiguration> = {},
   ) {
     this.strategy = strategy;
+    this.optimizer = new LayoutOptimizer();
     this.configuration = {
       ...DEFAULT_CONFIGURATION,
       ...configuration,
@@ -76,7 +79,7 @@ export class LayoutEngine {
 
     this.emit('layout-progress', { graph, progress: 0.5 });
     const rawPositions = await this.strategy.computePositions(graph, this.configuration);
-    const positions = this.applyManualOverrides(rawPositions);
+    const positions = this.optimizer.optimize(graph, rawPositions, this.configuration);
     const edgeGeometries = this.strategy.computeGeometries(
       graph,
       positions,
@@ -182,22 +185,6 @@ export class LayoutEngine {
     this.emit('layout-import', { data, positionedGraph });
 
     return positionedGraph;
-  }
-
-  private applyManualOverrides(
-    positions: ReadonlyMap<NodeId, ScreenCoordinate>,
-  ): ReadonlyMap<NodeId, ScreenCoordinate> {
-    const resolved = new Map(positions);
-
-    if (!this.configuration.manualOverrides) {
-      return resolved;
-    }
-
-    for (const [nodeId, coordinate] of this.configuration.manualOverrides) {
-      resolved.set(nodeId, coordinate);
-    }
-
-    return resolved;
   }
 
   private assertNoOverlap(positions: ReadonlyMap<NodeId, ScreenCoordinate>): void {
