@@ -43,6 +43,8 @@ export interface MockInteractionElementInit {
 export class MockInteractionElement implements InteractionElementLike {
   public readonly dataset: Record<string, string | undefined>;
   public readonly parentElement: MockInteractionElement | null;
+  public readonly style: Record<string, string>;
+  private readonly attributes = new Map<string, string>();
 
   public constructor(init: MockInteractionElementInit = {}) {
     this.dataset = {
@@ -54,13 +56,22 @@ export class MockInteractionElement implements InteractionElementLike {
       underlyingType: init.underlyingType,
     };
     this.parentElement = init.parentElement ?? null;
+    this.style = {};
   }
 
   public getAttribute(name: string): string | null {
+    if (this.attributes.has(name)) {
+      return this.attributes.get(name) ?? null;
+    }
+
     const key = name
       .replace(/^data-/, '')
       .replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase());
 
     return this.dataset[key] ?? null;
+  }
+
+  public setAttribute(name: string, value: string): void {
+    this.attributes.set(name, value);
   }
 }
