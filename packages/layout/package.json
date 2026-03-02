@@ -1,0 +1,42 @@
+{
+  "name": "@rail-schematic-viz/layout",
+  "version": "0.1.0",
+  "description": "Layout and interaction package for Rail Schematic Viz.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./layout": {
+      "types": "./dist/layout/index.d.ts",
+      "import": "./dist/layout/index.js",
+      "require": "./dist/layout/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup --config tsup.config.ts",
+    "test": "vitest",
+    "test:run": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "@rail-schematic-viz/core": "^0.1.0"
+  },
+  "devDependencies": {
+    "@rail-schematic-viz/core": "file:../..",
+    "@types/node": "^24.5.2",
+    "fast-check": "^4.3.0",
+    "tsup": "^8.5.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
