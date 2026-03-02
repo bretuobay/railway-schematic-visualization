@@ -10,7 +10,7 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
 
 ## Tasks
 
-- [ ] 1. Set up package structure and core overlay interfaces
+- [x] 1. Set up package structure and core overlay interfaces
   - Create package.json with dependencies (d3, rbush, fast-check, vitest)
   - Define RailOverlay interface with lifecycle methods (initialize, render, update, resize, destroy)
   - Define OverlayContext and RenderContext interfaces
@@ -20,12 +20,12 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Export TypeScript type definitions
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.8, 30.1, 30.6_
 
-- [ ]* 1.1 Write property test for overlay interface compliance
+- [x]* 1.1 Write property test for overlay interface compliance
   - **Property 6: Data Structure Validation**
   - **Validates: Requirements 3.1, 6.1, 9.1, 11.1, 13.1**
 
 
-- [ ] 2. Implement OverlayRegistry for custom overlay registration
+- [x] 2. Implement OverlayRegistry for custom overlay registration
   - Create OverlayRegistry class with factory pattern
   - Implement register() method accepting overlay type and factory function
   - Implement unregister() method for removing overlay types
@@ -35,11 +35,11 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define RegistryError class for registration errors
   - _Requirements: 16.1, 16.3, 16.6_
 
-- [ ]* 2.1 Write property test for custom overlay registration
+- [x]* 2.1 Write property test for custom overlay registration
   - **Property 22: Custom Overlay Registration Validation**
   - **Validates: Requirements 16.3**
 
-- [ ] 3. Implement OverlayManager for overlay lifecycle management
+- [x] 3. Implement OverlayManager for overlay lifecycle management
   - Create OverlayManager class with overlay collection (Map<string, RailOverlay>)
   - Implement addOverlay() method with unique ID generation
   - Implement removeOverlay() method with cleanup
@@ -54,39 +54,39 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Implement error handling with OverlayError
   - _Requirements: 1.6, 1.7, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 18.1, 18.2, 18.3, 18.4, 18.5, 18.6, 18.7, 18.8, 19.2, 19.3, 19.4, 19.5, 19.6, 19.7, 20.1, 20.2, 20.3, 20.4, 20.6, 20.7, 21.1, 21.2, 21.3, 21.4, 21.6, 21.7, 23.1, 23.2, 23.4, 23.6, 23.7_
 
-- [ ]* 3.1 Write property test for overlay collection maintenance
+- [x]* 3.1 Write property test for overlay collection maintenance
   - **Property 1: Overlay Collection Maintenance**
   - **Validates: Requirements 1.6**
 
-- [ ]* 3.2 Write property test for unique overlay identifiers
+- [x]* 3.2 Write property test for unique overlay identifiers
   - **Property 3: Unique Overlay Identifiers**
   - **Validates: Requirements 2.3**
 
-- [ ]* 3.3 Write property test for overlay lifecycle method invocation
+- [x]* 3.3 Write property test for overlay lifecycle method invocation
   - **Property 4: Overlay Lifecycle Method Invocation**
   - **Validates: Requirements 2.4, 2.5, 17.6**
 
-- [ ]* 3.4 Write property test for multiple instances support
+- [x]* 3.4 Write property test for multiple instances support
   - **Property 5: Multiple Instances Support**
   - **Validates: Requirements 2.6, 16.6**
 
-- [ ]* 3.5 Write property test for visibility control isolation
+- [x]* 3.5 Write property test for visibility control isolation
   - **Property 14: Visibility Control Isolation**
   - **Validates: Requirements 19.2**
 
-- [ ]* 3.6 Write property test for z-order rendering sequence
+- [x]* 3.6 Write property test for z-order rendering sequence
   - **Property 2: Z-Order Rendering Sequence**
   - **Validates: Requirements 1.7, 20.4**
 
-- [ ]* 3.7 Write property test for opacity validation
+- [x]* 3.7 Write property test for opacity validation
   - **Property 16: Opacity Range Validation**
   - **Validates: Requirements 21.1, 21.6**
 
-- [ ]* 3.8 Write property test for data update isolation
+- [x]* 3.8 Write property test for data update isolation
   - **Property 18: Data Update Isolation**
   - **Validates: Requirements 23.4**
 
-- [ ] 4. Implement rendering strategies (SVG and Canvas)
+- [x] 4. Implement rendering strategies (SVG and Canvas)
   - Define RenderStrategy interface with render(), update(), clear() methods
   - Define RenderElement interface with geometry and style
   - Define geometry types (PointGeometry, LineGeometry, PolygonGeometry, PathGeometry)
@@ -95,18 +95,18 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Implement UpdatePattern class encapsulating D3 enter-update-exit pattern
   - _Requirements: 3.7, 28.1, 28.2_
 
-- [ ]* 4.1 Write unit tests for SVGRenderer
+- [x]* 4.1 Write unit tests for SVGRenderer
   - Test element creation for each geometry type
   - Test style application
   - Test D3 update pattern
 
-- [ ]* 4.2 Write unit tests for CanvasRenderer
+- [x]* 4.2 Write unit tests for CanvasRenderer
   - Test rendering for each geometry type
   - Test offscreen canvas usage
   - Test clear operation
 
 
-- [ ] 5. Implement color scale library
+- [x] 5. Implement color scale library
   - Create ColorScale class with static methods for scale types
   - Implement linear() scale using d3.scaleLinear
   - Implement logarithmic() scale using d3.scaleLog
@@ -118,11 +118,11 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define ColorScaleFunction type
   - _Requirements: 3.4, 26.1, 26.2, 26.3, 26.4, 26.5, 26.6, 26.8_
 
-- [ ]* 5.1 Write property test for custom color scale registration
+- [x]* 5.1 Write property test for custom color scale registration
   - **Property 23: Custom Color Scale Registration**
   - **Validates: Requirements 26.8**
 
-- [ ] 6. Implement color palette library
+- [x] 6. Implement color palette library
   - Create ColorPalette class with predefined palettes as static properties
   - Implement sequential palettes (Blues, Greens, Reds, Greys)
   - Implement diverging palettes (RdBu, RdYlGn, Spectral)
@@ -134,16 +134,16 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Implement isColorBlindSafe() and isHighContrast() helper methods
   - _Requirements: 27.1, 27.2, 27.3, 27.4, 27.5, 27.6, 27.7, 27.8, 29.3_
 
-- [ ]* 6.1 Write property test for custom color palette registration
+- [x]* 6.1 Write property test for custom color palette registration
   - **Property 24: Custom Color Palette Registration**
   - **Validates: Requirements 27.8**
 
-- [ ]* 6.2 Write unit tests for color palette accessibility
+- [x]* 6.2 Write unit tests for color palette accessibility
   - Test color-blind safe palette identification
   - Test high contrast palette WCAG compliance
   - Test contrast ratios meet minimum requirements
 
-- [ ] 7. Implement spatial indexing with R-tree
+- [x] 7. Implement spatial indexing with R-tree
   - Create SpatialIndex class wrapping RBush library
   - Implement insert() method for adding entries
   - Implement remove() method for removing entries
@@ -153,12 +153,12 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define IndexEntry interface
   - _Requirements: 4.2, 7.7, 8.7, 28.4_
 
-- [ ]* 7.1 Write unit tests for spatial index operations
+- [x]* 7.1 Write unit tests for spatial index operations
   - Test insert and search operations
   - Test bulk load performance
   - Test bounding box queries
 
-- [ ] 8. Implement collision detection for annotations
+- [x] 8. Implement collision detection for annotations
   - Create CollisionDetection class
   - Implement detect() method accepting labels with positions and priorities
   - Implement computeBoundingBox() method for text dimension estimation
@@ -168,21 +168,21 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define CollisionConfig, CollisionResult, AdjustedPosition interfaces
   - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8_
 
-- [ ]* 8.1 Write property test for collision detection
+- [x]* 8.1 Write property test for collision detection
   - **Property 10: Collision Detection for Overlapping Labels**
   - **Validates: Requirements 7.1**
 
-- [ ]* 8.2 Write property test for leader lines on adjusted labels
+- [x]* 8.2 Write property test for leader lines on adjusted labels
   - **Property 11: Leader Lines for Adjusted Labels**
   - **Validates: Requirements 7.6**
 
-- [ ]* 8.3 Write unit tests for collision detection strategies
+- [x]* 8.3 Write unit tests for collision detection strategies
   - Test adjust strategy with various label arrangements
   - Test hide strategy with priority ordering
   - Test bounding box computation accuracy
 
 
-- [ ] 9. Implement clustering for annotations
+- [x] 9. Implement clustering for annotations
   - Create Clustering class
   - Implement cluster() method accepting annotations and zoom scale
   - Implement shouldCluster() method checking zoom threshold
@@ -191,19 +191,19 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define ClusteringConfig, ClusterResult, Cluster interfaces
   - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7_
 
-- [ ]* 9.1 Write property test for annotation clustering by proximity
+- [x]* 9.1 Write property test for annotation clustering by proximity
   - **Property 12: Annotation Clustering by Proximity**
   - **Validates: Requirements 8.1**
 
-- [ ]* 9.2 Write unit tests for clustering behavior
+- [x]* 9.2 Write unit tests for clustering behavior
   - Test zoom-based clustering threshold
   - Test cluster expansion and collapse
   - Test cluster count accuracy
 
-- [ ] 10. Checkpoint - Ensure all tests pass
+- [x] 10. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 11. Implement HeatMapOverlay
+- [x] 11. Implement HeatMapOverlay
   - Create HeatMapOverlay class implementing RailOverlay interface
   - Implement initialize() method setting up Canvas rendering and spatial index
   - Implement render() method with viewport culling and color gradient rendering
@@ -219,22 +219,22 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define HeatMapDataPoint and HeatMapConfiguration interfaces
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 4.2, 4.3, 4.4, 4.5, 5.1, 5.2, 5.3, 5.4, 5.5_
 
-- [ ]* 11.1 Write property test for coordinate projection completeness
+- [x]* 11.1 Write property test for coordinate projection completeness
   - **Property 7: Coordinate Projection Completeness**
   - **Validates: Requirements 3.2, 6.2, 9.2**
 
-- [ ]* 11.2 Write property test for legend descriptor validity
+- [x]* 11.2 Write property test for legend descriptor validity
   - **Property 8: Legend Descriptor Validity**
   - **Validates: Requirements 5.1, 5.2, 5.3, 5.4, 5.5, 11.8**
 
-- [ ]* 11.3 Write unit tests for HeatMapOverlay
+- [x]* 11.3 Write unit tests for HeatMapOverlay
   - Test data acceptance and validation
   - Test color scale application
   - Test interpolation modes (linear, step, smooth)
   - Test viewport culling with spatial index
   - Test cache behavior
 
-- [ ] 12. Implement AnnotationOverlay
+- [x] 12. Implement AnnotationOverlay
   - Create AnnotationOverlay class implementing RailOverlay interface
   - Implement initialize() method setting up SVG rendering, collision detection, and clustering
   - Implement render() method with projection, clustering, collision detection, and pin/label rendering
@@ -251,11 +251,11 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define AnnotationDataPoint and AnnotationConfiguration interfaces
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6_
 
-- [ ]* 12.1 Write property test for event emission on interaction
+- [x]* 12.1 Write property test for event emission on interaction
   - **Property 9: Event Emission on Interaction**
   - **Validates: Requirements 6.7, 8.4, 24.1**
 
-- [ ]* 12.2 Write unit tests for AnnotationOverlay
+- [x]* 12.2 Write unit tests for AnnotationOverlay
   - Test pin icon rendering for each type
   - Test label styling application
   - Test collision detection integration
@@ -263,7 +263,7 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Test click event data structure
 
 
-- [ ] 13. Implement RangeBandOverlay
+- [x] 13. Implement RangeBandOverlay
   - Create RangeBandOverlay class implementing RailOverlay interface
   - Implement initialize() method setting up SVG rendering
   - Implement render() method with start/end position projection and track topology following
@@ -280,18 +280,18 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define RangeBandDataPoint and RangeBandConfiguration interfaces
   - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7_
 
-- [ ]* 13.1 Write property test for range band overlap handling
+- [x]* 13.1 Write property test for range band overlap handling
   - **Property 13: Range Band Overlap Rendering**
   - **Validates: Requirements 10.1**
 
-- [ ]* 13.2 Write unit tests for RangeBandOverlay
+- [x]* 13.2 Write unit tests for RangeBandOverlay
   - Test track topology following for multi-segment bands
   - Test blend modes (normal, multiply, screen)
   - Test stacking mode with offset calculation
   - Test label positioning (above, below, inline)
   - Test hover event emission for overlapping bands
 
-- [ ] 14. Implement TrafficFlowOverlay
+- [x] 14. Implement TrafficFlowOverlay
   - Create TrafficFlowOverlay class implementing RailOverlay interface
   - Implement initialize() method setting up SVG rendering and animation controller
   - Implement render() method with arrow rendering based on direction and frequency
@@ -307,14 +307,14 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define TrafficFlowDataPoint and TrafficFlowConfiguration interfaces
   - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
 
-- [ ]* 14.1 Write unit tests for TrafficFlowOverlay
+- [x]* 14.1 Write unit tests for TrafficFlowOverlay
   - Test arrow rendering for each direction type
   - Test width scaling function application
   - Test animation styles
   - Test bidirectional arrow separation
   - Test legend frequency scale
 
-- [ ] 15. Implement AnimationController
+- [x] 15. Implement AnimationController
   - Create AnimationController class
   - Implement start() method with requestAnimationFrame loop
   - Implement stop() method with cleanup
@@ -324,14 +324,14 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define AnimationConfig and AnimationState interfaces
   - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
 
-- [ ]* 15.1 Write unit tests for AnimationController
+- [x]* 15.1 Write unit tests for AnimationController
   - Test animation lifecycle (start, pause, resume, stop)
   - Test speed adjustment
   - Test multiple simultaneous animations
   - Test frame callback invocation
 
 
-- [ ] 16. Implement TimeSeriesOverlay
+- [x] 16. Implement TimeSeriesOverlay
   - Create TimeSeriesOverlay class implementing RailOverlay interface
   - Implement initialize() method setting up temporal index and UI controls
   - Implement render() method with timestamp filtering and metric visibility
@@ -350,15 +350,15 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define TimeSeriesDataPoint and TimeSeriesConfiguration interfaces
   - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 13.7, 13.8, 14.1, 14.2, 14.3, 14.4, 14.5, 14.6, 14.7, 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7_
 
-- [ ]* 16.1 Write property test for time-series timestamp filtering
+- [x]* 16.1 Write property test for time-series timestamp filtering
   - **Property 25: Time-Series Timestamp Filtering**
   - **Validates: Requirements 13.3**
 
-- [ ]* 16.2 Write property test for time-series metric visibility toggle
+- [x]* 16.2 Write property test for time-series metric visibility toggle
   - **Property 26: Time-Series Metric Visibility Toggle**
   - **Validates: Requirements 14.1, 14.4**
 
-- [ ]* 16.3 Write unit tests for TimeSeriesOverlay
+- [x]* 16.3 Write unit tests for TimeSeriesOverlay
   - Test temporal index construction and queries
   - Test playback controls (play, pause, stop, speed)
   - Test time slider position updates
@@ -366,10 +366,10 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Test frame preloading and caching
   - Test time format display
 
-- [ ] 17. Checkpoint - Ensure all overlay implementations pass tests
+- [x] 17. Checkpoint - Ensure all overlay implementations pass tests
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 18. Implement legend system
+- [x] 18. Implement legend system
   - Define LegendDescriptor interface with discriminated union for legend types
   - Define ContinuousLegendItem, DiscreteLegendItem, CategoricalLegendItem interfaces
   - Create LegendRenderer class
@@ -383,18 +383,18 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Define LegendConfiguration interface
   - _Requirements: 5.6, 5.7, 22.1, 22.2, 22.3, 22.4, 22.5, 22.6, 22.7, 22.8_
 
-- [ ]* 18.1 Write property test for legend rendering for visible overlays
+- [x]* 18.1 Write property test for legend rendering for visible overlays
   - **Property 17: Legend Rendering for Visible Overlays**
   - **Validates: Requirements 22.2**
 
-- [ ]* 18.2 Write unit tests for LegendRenderer
+- [x]* 18.2 Write unit tests for LegendRenderer
   - Test each legend type rendering (continuous, discrete, categorical)
   - Test legend positioning (all corner positions)
   - Test collapsible legend behavior
   - Test legend styling application
 
 
-- [ ] 19. Implement performance optimization utilities
+- [x] 19. Implement performance optimization utilities
   - Create PerformanceMonitor class
   - Implement startMeasure() and endMeasure() methods
   - Implement getMetrics() and getAllMetrics() methods
@@ -404,17 +404,17 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Integrate debouncing for viewport change updates
   - _Requirements: 4.5, 4.7, 15.7, 28.5, 28.8_
 
-- [ ]* 19.1 Write unit tests for PerformanceMonitor
+- [x]* 19.1 Write unit tests for PerformanceMonitor
   - Test measurement accuracy
   - Test metrics aggregation (average, max, min)
   - Test reset functionality
 
-- [ ]* 19.2 Write unit tests for debounce and throttle
+- [x]* 19.2 Write unit tests for debounce and throttle
   - Test debounce delay behavior
   - Test throttle frequency limiting
   - Test function invocation timing
 
-- [ ] 20. Implement overlay event handling system
+- [x] 20. Implement overlay event handling system
   - Extend OverlayManager with event handling methods
   - Implement click event emission with overlay ID, element data, and coordinates
   - Implement hover and hover-end event emission
@@ -423,13 +423,13 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Implement configuration-change event emission
   - _Requirements: 24.1, 24.2, 24.3, 24.4, 24.5, 24.6, 24.7, 24.8, 25.7_
 
-- [ ]* 20.1 Write unit tests for event handling
+- [x]* 20.1 Write unit tests for event handling
   - Test click event emission and data structure
   - Test hover event emission
   - Test event delegation behavior
   - Test event handler registration and cleanup
 
-- [ ] 21. Implement overlay configuration validation
+- [x] 21. Implement overlay configuration validation
   - Extend OverlayManager with configuration validation
   - Implement validation for required configuration properties
   - Implement default value application for missing properties
@@ -437,17 +437,17 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Implement configuration schema validation for each overlay type
   - _Requirements: 2.8, 25.1, 25.2, 25.3, 25.4, 25.5, 25.6, 25.8_
 
-- [ ]* 21.1 Write property test for configuration validation
+- [x]* 21.1 Write property test for configuration validation
   - **Property 19: Configuration Validation and Defaults**
   - **Validates: Requirements 25.5**
 
-- [ ]* 21.2 Write unit tests for configuration validation
+- [x]* 21.2 Write unit tests for configuration validation
   - Test required property validation
   - Test default value application
   - Test runtime configuration updates
   - Test invalid configuration rejection
 
-- [ ] 22. Implement accessibility features
+- [x] 22. Implement accessibility features
   - Add ARIA labels to all interactive overlay elements
   - Implement keyboard navigation support (Tab, Enter, Space, Escape, Arrow keys)
   - Implement ARIA live regions for overlay visibility announcements
@@ -458,14 +458,14 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Implement aria-describedby for tooltips
   - _Requirements: 29.1, 29.2, 29.4, 29.5_
 
-- [ ]* 22.1 Write unit tests for accessibility features
+- [x]* 22.1 Write unit tests for accessibility features
   - Test ARIA label presence on interactive elements
   - Test keyboard navigation event handling
   - Test focus management
   - Test ARIA live region updates
 
 
-- [ ] 23. Implement viewport culling optimization
+- [x] 23. Implement viewport culling optimization
   - Integrate SpatialIndex into HeatMapOverlay for viewport culling
   - Implement visible bounds calculation with buffer margin
   - Implement viewport culling in AnnotationOverlay
@@ -473,16 +473,16 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Implement culled element count tracking in performance metrics
   - _Requirements: 4.2, 28.3, 28.4_
 
-- [ ]* 23.1 Write unit tests for viewport culling
+- [x]* 23.1 Write unit tests for viewport culling
   - Test spatial index queries for visible bounds
   - Test buffer margin calculation
   - Test culled element count accuracy
   - Test rendering only visible elements
 
-- [ ] 24. Checkpoint - Ensure all optimization and accessibility tests pass
+- [x] 24. Checkpoint - Ensure all optimization and accessibility tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 25. Wire all components together and create main exports
+- [x] 25. Wire all components together and create main exports
   - Create src/index.ts with all public API exports
   - Export OverlayManager, OverlayRegistry, RailOverlay interface
   - Export all built-in overlay types (HeatMapOverlay, AnnotationOverlay, RangeBandOverlay, TrafficFlowOverlay, TimeSeriesOverlay)
@@ -494,7 +494,7 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Export all TypeScript type definitions
   - _Requirements: 30.2, 30.3, 30.4, 30.5, 30.6_
 
-- [ ] 26. Create package documentation
+- [x] 26. Create package documentation
   - Create README.md with installation instructions
   - Add usage examples for each overlay type
   - Add custom overlay development guide
@@ -504,20 +504,20 @@ This package builds on @rail-schematic-viz/core (CoordinateBridge, RailGraph) an
   - Document performance optimization guidelines
   - _Requirements: 30.8_
 
-- [ ]* 26.1 Write integration tests for multi-overlay scenarios
+- [x]* 26.1 Write integration tests for multi-overlay scenarios
   - Test multiple overlays with different z-orders
   - Test overlay visibility toggling with multiple overlays
   - Test batch data updates
   - Test legend rendering for multiple overlays
   - Test event handling with multiple overlays
 
-- [ ]* 26.2 Write integration tests for core package dependencies
+- [x]* 26.2 Write integration tests for core package dependencies
   - Test CoordinateBridge integration for all overlay types
   - Test ViewportController integration
   - Test EventManager integration
   - Test RailGraph integration
 
-- [ ] 27. Final checkpoint - Ensure all tests pass and coverage meets 80% target
+- [x] 27. Final checkpoint - Ensure all tests pass and coverage meets 80% target
   - Run all unit tests and verify passing
   - Run all property-based tests and verify passing
   - Run all integration tests and verify passing
