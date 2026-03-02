@@ -115,8 +115,8 @@ The implementation follows a layered approach: layout engine and strategies firs
 - [x] 6. Checkpoint - Ensure basic layout modes tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 7. Implement Metro-Map Layout mode
-  - [ ] 7.1 Create MetroMapLayout class
+- [x] 7. Implement Metro-Map Layout mode
+  - [x] 7.1 Create MetroMapLayout class
     - Implement LayoutStrategy interface
     - Start with force-directed layout
     - Snap nodes to grid
@@ -127,19 +127,19 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Support configurable grid spacing
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7_
   
-  - [ ]* 7.2 Write property tests for metro-map layout
+  - [x]* 7.2 Write property tests for metro-map layout
     - **Property 13: Metro-Map Octilinear Constraints** - Validates: Requirements 5.1, 5.7
     - **Property 14: Label Collision Avoidance** - Validates: Requirements 5.3
   
-  - [ ]* 7.3 Write unit tests for metro-map layout
+  - [x]* 7.3 Write unit tests for metro-map layout
     - Test octilinear angle constraints
     - Test grid snapping
     - Test force-directed optimization
     - Test grid spacing configuration
     - _Requirements: 5.1-5.7_
 
-- [ ] 8. Implement Auto-Layout engine
-  - [ ] 8.1 Create AutoLayout class
+- [x] 8. Implement Auto-Layout engine
+  - [x] 8.1 Create AutoLayout class
     - Implement LayoutStrategy interface
     - Use D3 force simulation with configurable parameters
     - Apply link distance forces based on edge length properties
@@ -150,12 +150,12 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Ensure nodes are separated by at least configured minimum distance
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9_
   
-  - [ ]* 8.2 Write property tests for auto-layout
+  - [x]* 8.2 Write property tests for auto-layout
     - **Property 15: Auto-Layout Coordinate Generation** - Validates: Requirements 6.1
     - **Property 16: Auto-Layout Node Separation** - Validates: Requirements 6.4, 6.9
     - **Property 17: Auto-Layout Centering** - Validates: Requirements 6.5
   
-  - [ ]* 8.3 Write unit tests for auto-layout
+  - [x]* 8.3 Write unit tests for auto-layout
     - Test coordinate generation for graph without coordinates
     - Test D3 force simulation integration
     - Test node separation enforcement
