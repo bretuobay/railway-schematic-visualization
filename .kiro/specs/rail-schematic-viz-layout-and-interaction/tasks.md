@@ -266,8 +266,8 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Test event emission
     - _Requirements: 8.1-8.7, 9.1-9.8_
 
-- [ ] 14. Implement fit-to-view operations
-  - [ ] 14.1 Create FitToView utility
+- [x] 14. Implement fit-to-view operations
+  - [x] 14.1 Create FitToView utility
     - Implement fitToView() method that adjusts viewport to show all elements
     - Implement fitSelection() method that adjusts viewport to show selected elements
     - Apply configurable padding when fitting to view
@@ -276,14 +276,14 @@ The implementation follows a layered approach: layout engine and strategies firs
     - Respect minimum and maximum zoom bounds when fitting
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7_
   
-  - [ ]* 14.2 Write property tests for fit-to-view
+  - [x]* 14.2 Write property tests for fit-to-view
     - **Property 23: Fit-to-View Completeness** - Validates: Requirements 10.1
     - **Property 24: Fit-Selection Completeness** - Validates: Requirements 10.2
     - **Property 25: Fit-to-View Padding** - Validates: Requirements 10.3
     - **Property 26: Fit-to-View Aspect Ratio** - Validates: Requirements 10.4
     - **Property 27: Fit-to-View Zoom Bounds** - Validates: Requirements 10.6
   
-  - [ ]* 14.3 Write unit tests for fit-to-view
+  - [x]* 14.3 Write unit tests for fit-to-view
     - Test fitToView with simple graph
     - Test fitSelection with selected elements
     - Test padding application
