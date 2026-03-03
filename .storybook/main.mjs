@@ -1,6 +1,5 @@
 export default {
   stories: [
-    '../stories/**/*.mdx',
     '../stories/**/*.stories.@(js|mjs)',
   ],
   addons: [

@@ -1,0 +1,32 @@
+<railml version="3.3">
+  <infrastructure>
+    <topology>
+      <netElements>
+        <netElement id="node-a" name="Node A" type="station">
+          <screenPositioningSystem x="0" y="0" />
+        </netElement>
+        <netElement id="node-b" name="Node B" type="junction">
+          <screenPositioningSystem x="100" y="0" />
+        </netElement>
+      </netElements>
+      <netRelations>
+        <netRelation id="edge-ab" source="node-a" target="node-b" length="100">
+          <switch switchType="left_turnout" orientation="15" />
+        </netRelation>
+      </netRelations>
+      <operationalPoints>
+        <operationalPoint id="op-1" name="Station Alpha" nodeRef="node-a" type="station" />
+      </operationalPoints>
+      <signals>
+        <signal id="signal-1" name="Signal 1" nodeRef="node-b">
+          <screenPositioningSystem x="110" y="0" />
+        </signal>
+      </signals>
+      <railSchematicLines>
+        <line id="line-1" name="Main Line" color="#2563eb">
+          <edgeRef ref="edge-ab" />
+        </line>
+      </railSchematicLines>
+    </topology>
+  </infrastructure>
+</railml>

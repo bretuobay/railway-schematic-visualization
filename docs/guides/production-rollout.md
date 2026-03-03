@@ -25,13 +25,20 @@ Run these before release:
 5. `npm run check:distribution`
 6. `npm run check:browser-infra`
 7. `npm run check:ci`
+8. `npm run check:release-dry-run`
+9. `npm run check:runtime`
+10. `npm run check:signoff`
 
 ## Release Readiness
 
 - Confirm bundle budgets in [Bundle Size](/bundle-size)
 - Confirm supported browser matrix in [Browser Compatibility](/browser-compatibility)
 - Confirm package metadata and artifacts through the distribution gate
+- Confirm the local release dry run produces `.release/release-validation.json`
+- Confirm the runtime validation summary produces `.artifacts/runtime/summary.json`
+- Confirm the final signoff gate passes without manual step-skipping
 - Confirm docs and Storybook changes ship with user-facing feature additions
+- Confirm `NPM_TOKEN` and release tag conventions are configured before pushing a release tag
 
 ## Rollout Advice
 

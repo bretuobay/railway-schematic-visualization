@@ -92,6 +92,6 @@ graph TD
 
 1. Run `npm run check`.
 2. Run `npm run check:distribution`.
-3. Update [CHANGELOG.md](/Users/festusyeboah/Documents/2025/railway-schematic-visualization/CHANGELOG.md) with the release section.
+3. Update [CHANGELOG.md](https://github.com/rail-schematic-viz/rail-schematic-viz/blob/main/CHANGELOG.md) with the release section.
 4. Extract publish-ready notes with `npm run release:notes`.
 5. Publish the affected `@rail-schematic-viz/*` packages to the public npm registry.

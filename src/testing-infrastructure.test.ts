@@ -36,6 +36,7 @@ describe('testing infrastructure', () => {
     expect(testingGuidelines).toContain('npm run test:types');
     expect(testingGuidelines).toContain('npm run check:storybook');
     expect(testingGuidelines).toContain('npm run check:ci');
+    expect(testingGuidelines).toContain('npm run check:runtime');
     expect(testingGuidelines).toContain('npm run test:browser');
     expect(testingGuidelines).toContain('npm run test:visual');
     expect(testingGuidelines).toContain('npm run bench:render');
@@ -59,7 +60,7 @@ describe('testing infrastructure', () => {
   it('defines a four-browser Playwright matrix', async () => {
     const configModule = await import(pathToFileURL(resolve(process.cwd(), 'playwright.config.mjs')).href);
     const config = configModule.default as {
-      projects?: Array<{ name?: string }>;
+      projects?: Array<{ name?: string; use?: { browserName?: string } }>;
       testDir?: string;
     };
 
@@ -69,6 +70,12 @@ describe('testing infrastructure', () => {
       'firefox',
       'safari',
       'edge',
+    ]);
+    expect(config.projects?.map((project) => project.use?.browserName)).toEqual([
+      'chromium',
+      'firefox',
+      'webkit',
+      'chromium',
     ]);
   });
 });

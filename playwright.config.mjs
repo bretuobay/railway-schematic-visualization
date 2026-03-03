@@ -19,7 +19,6 @@ const config = {
       name: 'chrome',
       use: {
         browserName: 'chromium',
-        channel: 'chrome',
       },
     },
     {
@@ -38,7 +37,6 @@ const config = {
       name: 'edge',
       use: {
         browserName: 'chromium',
-        channel: 'msedge',
       },
     },
   ],

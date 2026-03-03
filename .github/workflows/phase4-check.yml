@@ -164,8 +164,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright browsers
+        run: npx playwright install chromium firefox webkit
+
       - name: Run browser compatibility infrastructure gate
-        run: npm run check:browser-infra
+        run: |
+          npm run check:browser-infra
+          npm run test:browser
+          npm run test:visual
 
   benchmarks:
     runs-on: ubuntu-latest

@@ -10,13 +10,14 @@ mkdirSync(outputDirectory, { recursive: true });
 
 if (existsSync(vitepressDist)) {
   copyTree(vitepressDist, outputDirectory);
+  writeFileSync(resolve(outputDirectory, 'site.json'), `${JSON.stringify(buildSiteManifest('vitepress', true), null, 2)}\n`, 'utf8');
   console.log(`Prepared docs artifact from VitePress output at ${outputDirectory}`);
   process.exit(0);
 }
 
 copyPublicAssets();
 writeFileSync(resolve(outputDirectory, 'index.html'), buildFallbackIndexHtml(), 'utf8');
-writeFileSync(resolve(outputDirectory, 'site.json'), `${JSON.stringify(buildSiteManifest(), null, 2)}\n`, 'utf8');
+writeFileSync(resolve(outputDirectory, 'site.json'), `${JSON.stringify(buildSiteManifest('fallback', false), null, 2)}\n`, 'utf8');
 
 console.log(`Prepared fallback docs artifact at ${outputDirectory}`);
 
@@ -120,12 +121,12 @@ function buildFallbackIndexHtml() {
 `;
 }
 
-function buildSiteManifest() {
+function buildSiteManifest(mode, usesVitePressOutput) {
   return {
     generatedAt: new Date().toISOString(),
-    mode: 'fallback',
+    mode,
     sourceDirectory: 'docs',
-    usesVitePressOutput: false,
+    usesVitePressOutput,
     pages: [
       '/',
       '/getting-started',

@@ -22,7 +22,7 @@ export {
   RailSchematicError,
   ValidationError,
 } from './errors';
-export { JSONParser, JSONSerializer, RailMLParser } from './parsers';
+export { JSONParser, JSONSerializer, RailMLParser, RailMLSerializer } from './parsers';
 export { DEFAULT_STYLING, SVGRenderer } from './renderer';
 export type {
   Coordinate,

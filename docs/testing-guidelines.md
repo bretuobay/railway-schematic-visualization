@@ -8,12 +8,14 @@ Use the workspace gates first. They are the baseline contract for every change:
 - `npm run check:build`: verifies all distributable artifacts still build.
 - `npm run check:bundles`: validates tree-shaking and bundle-size budgets.
 - `npm run check:ci`: validates the CI/CD workflow contract and release/deploy pipeline files.
+- `npm run check:runtime`: runs the real browser suite, visual regression suite, and multi-scenario rendering benchmarks.
+- `npm run check:signoff`: runs the full pre-release gate, including conformance, release dry run, and runtime validation.
 - `npm run check:storybook`: verifies the Storybook scaffold and example inventory.
 
 ## Browser And Visual Testing
 
-- `npm run test:browser`: validates Playwright browser-test infrastructure and runs the browser suite when Playwright is installed locally.
-- `npm run test:visual`: runs the `@visual` screenshot suite through the same Playwright wrapper.
+- `npm run test:browser`: runs the non-visual Playwright browser suite across the supported browser matrix.
+- `npm run test:visual`: runs the `@visual` screenshot suite against the canonical Chrome baseline through the same Playwright wrapper.
 - `npm run storybook`: starts Storybook when installed locally, otherwise validates the scaffold and exits cleanly.
 - `npm run storybook:build`: builds Storybook when installed locally, otherwise validates the scaffold and exits cleanly.
 - Browser coverage targets:
@@ -24,7 +26,12 @@ Use the workspace gates first. They are the baseline contract for every change:
 
 ## Benchmarks
 
-- `npm run bench:render`: runs the lightweight rendering benchmark against the built core package.
+- `npm run bench:render`: runs the rendering benchmark against the built core package.
+- Supported benchmark scenarios:
+  - `baseline`
+  - `large`
+  - `stress`
+- Example: `npm run bench:render -- --scenario large --output .artifacts/runtime/large.json --enforce-budget`
 - Run `npm run check:build` first if `dist/` is stale or missing.
 
 ## Integration Coverage

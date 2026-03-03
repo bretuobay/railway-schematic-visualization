@@ -23,7 +23,6 @@ describe('storybook scaffold', () => {
 
     expect(config.framework?.name).toBe('@storybook/html-vite');
     expect(config.stories).toEqual([
-      '../stories/**/*.mdx',
       '../stories/**/*.stories.@(js|mjs)',
     ]);
     expect(config.addons).toContain('@storybook/addon-a11y');
@@ -39,7 +38,7 @@ describe('storybook scaffold', () => {
   });
 
   it('ships the interactive example stories and docs page', () => {
-    assertFileExists('stories/introduction.stories.mdx');
+    assertFileExists('stories/introduction.stories.js');
     assertFileExists('stories/core-renderer.stories.js');
     assertFileExists('stories/framework-adapters.stories.js');
     assertFileExists('stories/ecosystem-features.stories.js');
@@ -52,5 +51,15 @@ describe('storybook scaffold', () => {
     expect(storybookDoc).toContain('Core/Renderer');
     expect(coreStory).toContain("title: 'Core/Renderer'");
     expect(coreStory).toContain('Minimal SVG Render');
+  });
+
+  it('declares the runtime storybook dependencies in package metadata', () => {
+    const packageJson = readWorkspaceFile('package.json');
+
+    expect(packageJson).toContain('"storybook"');
+    expect(packageJson).toContain('"@storybook/html-vite"');
+    expect(packageJson).toContain('"@storybook/addon-essentials"');
+    expect(packageJson).toContain('"@storybook/addon-a11y"');
+    expect(packageJson).toContain('"@storybook/addon-interactions"');
   });
 });

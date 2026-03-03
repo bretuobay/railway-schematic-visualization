@@ -48,6 +48,11 @@ const result = spawnSync(
   localStorybookBinary,
   args,
   {
+    env: {
+      ...process.env,
+      CI: '1',
+      STORYBOOK_DISABLE_TELEMETRY: '1',
+    },
     stdio: 'inherit',
   },
 );

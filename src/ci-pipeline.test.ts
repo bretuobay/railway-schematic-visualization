@@ -13,7 +13,14 @@ function readWorkspaceFile(relativePath: string): string {
 
 describe('ci/cd pipeline', () => {
   it('keeps the release and deploy workflow wired for docs and package publishing', () => {
+    const workspaceWorkflow = readWorkspaceFile('.github/workflows/phase4-check.yml');
     const workflow = readWorkspaceFile('.github/workflows/release-and-deploy.yml');
+
+    expect(workspaceWorkflow).toContain('npm run docs:build');
+    expect(workspaceWorkflow).toContain('npm run storybook:build');
+    expect(workspaceWorkflow).toContain('npx playwright install chromium firefox webkit');
+    expect(workspaceWorkflow).toContain('npm run test:browser');
+    expect(workspaceWorkflow).toContain('npm run test:visual');
 
     expect(workflow).toContain('name: Release And Deploy');
     expect(workflow).toContain('workflow_dispatch:');
@@ -22,6 +29,10 @@ describe('ci/cd pipeline', () => {
     expect(workflow).toContain('publish-packages:');
     expect(workflow).toContain('deploy-docs:');
     expect(workflow).toContain('publish-release-notes:');
+    expect(workflow).toContain('npx playwright install chromium firefox webkit');
+    expect(workflow).toContain('npm run check:runtime');
+    expect(workflow).toContain('npm run check:release-dry-run');
+    expect(workflow).toContain('.release/release-validation.json');
     expect(workflow).toContain('actions/deploy-pages@v4');
     expect(workflow).toContain('softprops/action-gh-release@v2');
     expect(workflow).toContain('NPM_TOKEN');
@@ -34,6 +45,8 @@ describe('ci/cd pipeline', () => {
     const packageJson = readWorkspaceFile('package.json');
 
     expect(packageJson).toContain('"check:ci": "node scripts/check-ci-pipeline.mjs && vitest run src/ci-pipeline.test.ts"');
+    expect(packageJson).toContain('"check:runtime": "node scripts/check-production-runtime.mjs"');
+    expect(packageJson).toContain('"check:release-dry-run": "node scripts/run-release-dry-run.mjs"');
     expect(packageJson).toContain('"release:manifest": "node scripts/create-release-manifest.mjs"');
     expect(packageJson).toContain('"docs:artifact": "node scripts/prepare-docs-artifact.mjs .artifacts/pages"');
   });
@@ -42,8 +55,11 @@ describe('ci/cd pipeline', () => {
     const versioningPolicy = readWorkspaceFile('docs/versioning-policy.md');
     const productionGuide = readWorkspaceFile('docs/guides/production-rollout.md');
 
+    expect(versioningPolicy).toContain('npm run check:release-dry-run');
     expect(versioningPolicy).toContain('npm run release:manifest');
     expect(versioningPolicy).toContain('[CHANGELOG.md](https://github.com/rail-schematic-viz/rail-schematic-viz/blob/main/CHANGELOG.md)');
+    expect(productionGuide).toContain('npm run check:runtime');
+    expect(productionGuide).toContain('npm run check:release-dry-run');
     expect(productionGuide).toContain('npm run check:ci');
   });
 });

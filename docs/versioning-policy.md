@@ -23,6 +23,27 @@ The project supports the current and previous major version at the same time. Ne
 - Every published version must have a matching section in [CHANGELOG.md](https://github.com/rail-schematic-viz/rail-schematic-viz/blob/main/CHANGELOG.md).
 - `npm run release:notes` extracts the current version section for publishing in GitHub Releases or npm release notes.
 - `npm run release:manifest` writes the package and artifact manifest used by the release pipeline.
+- `npm run check:release-dry-run` runs the local release pipeline without publishing and writes `.release/release-validation.json`.
+
+## Release Dry Run
+
+Run this before tagging a release:
+
+1. `npm run check`
+2. `npm run check:release-dry-run`
+
+The dry run generates:
+
+- `.release/release-notes.md`
+- `.release/release-manifest.json`
+- `.release/release-validation.json`
+- `.release/pages/`
+
+For actual tagged releases, the CI workflow also expects:
+
+- `NPM_TOKEN` for npm publication
+- `GITHUB_TOKEN` for GitHub release creation
+- Git tags that match `v*`
 
 ## Migration Guides
 

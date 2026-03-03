@@ -17,6 +17,11 @@ assertWorkflow(
     'storybook:',
     'browser-infrastructure:',
     'benchmarks:',
+    'npm run docs:build',
+    'npm run storybook:build',
+    'npx playwright install chromium firefox webkit',
+    'npm run test:browser',
+    'npm run test:visual',
   ],
 );
 
@@ -32,6 +37,10 @@ assertWorkflow(
     'publish-packages:',
     'deploy-docs:',
     'publish-release-notes:',
+    'npx playwright install chromium firefox webkit',
+    'npm run check:runtime',
+    'npm run check:release-dry-run',
+    '.release/release-validation.json',
     'actions/upload-artifact@v4',
     'actions/upload-pages-artifact@v3',
     'actions/deploy-pages@v4',
