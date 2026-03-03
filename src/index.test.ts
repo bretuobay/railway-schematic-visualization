@@ -16,6 +16,9 @@ describe('package exports', () => {
     expect(root.JSONParser).toBeDefined();
     expect(root.RailMLParser).toBeDefined();
     expect(root.ParseError).toBeDefined();
+    expect(root.RailSchematicCLI).toBeDefined();
+    expect(root.runCLI).toBeDefined();
+    expect(root.createDebugLogger).toBeDefined();
   });
 
   it('exports all public submodules', () => {

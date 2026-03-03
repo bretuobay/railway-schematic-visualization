@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-03-03T16:21:17.944Z",
+  "mode": "fallback",
+  "sourceDirectory": "docs",
+  "usesVitePressOutput": false,
+  "pages": [
+    "/",
+    "/getting-started",
+    "/guides/",
+    "/api-reference",
+    "/storybook",
+    "/browser-compatibility",
+    "/testing-guidelines",
+    "/versioning-policy"
+  ]
+}

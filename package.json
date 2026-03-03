@@ -8,8 +8,15 @@
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
+  "browser": "./dist/index.umd.js",
+  "unpkg": "./dist/index.umd.js",
+  "jsdelivr": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "rail-schematic-viz": "./bin/rail-schematic-viz.mjs"
+  },
   "files": [
+    "bin",
     "dist"
   ],
   "sideEffects": false,
@@ -51,16 +58,36 @@
     }
   },
   "scripts": {
-    "build": "tsup --config tsup.config.ts",
+    "analyze:bundles": "node scripts/analyze-bundles.mjs",
+    "bench:render": "node benchmarks/rendering.benchmark.mjs",
+    "build": "tsup --config tsup.config.ts && node scripts/generate-umd.mjs",
     "build:workspaces": "npm run build --workspaces --if-present",
-    "check": "node scripts/check-workspaces.mjs . @rail-schematic-viz/layout @rail-schematic-viz/overlays @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
-    "check:build": "node scripts/check-workspaces.mjs --step build . @rail-schematic-viz/layout @rail-schematic-viz/overlays @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
-    "check:phase4": "node scripts/check-workspaces.mjs @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
-    "check:test": "node scripts/check-workspaces.mjs --step test:coverage . @rail-schematic-viz/layout @rail-schematic-viz/overlays @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
-    "check:typecheck": "node scripts/check-workspaces.mjs --step typecheck . @rail-schematic-viz/layout @rail-schematic-viz/overlays @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
+    "check": "node scripts/check-workspaces.mjs --preset all && npm run check:bundles && npm run check:distribution",
+    "check:build": "node scripts/check-workspaces.mjs --step build --preset all",
+    "check:browser-infra": "vitest run src/browser-compatibility.test.ts src/testing-infrastructure.test.ts",
+    "check:bundles": "node scripts/analyze-bundles.mjs",
+    "check:ci": "node scripts/check-ci-pipeline.mjs && vitest run src/ci-pipeline.test.ts",
+    "check:docs-site": "vitest run src/docs-site.test.ts",
+    "check:distribution": "node scripts/check-distribution.mjs",
+    "check:phase4": "node scripts/check-workspaces.mjs --preset phase4",
+    "check:phase5": "node scripts/check-workspaces.mjs --preset phase5",
+    "check:storybook": "vitest run src/storybook.test.ts",
+    "check:test": "node scripts/check-workspaces.mjs --step test:coverage --preset all",
+    "check:typecheck": "node scripts/check-workspaces.mjs --step typecheck --preset all && npm run test:types",
+    "docs:build": "node scripts/run-docs-site.mjs build",
+    "docs:dev": "node scripts/run-docs-site.mjs dev",
+    "docs:preview": "node scripts/run-docs-site.mjs preview",
+    "docs:artifact": "node scripts/prepare-docs-artifact.mjs .artifacts/pages",
+    "release:manifest": "node scripts/create-release-manifest.mjs",
+    "release:notes": "node scripts/release-notes.mjs",
+    "storybook": "node scripts/run-storybook.mjs dev",
+    "storybook:build": "node scripts/run-storybook.mjs build",
     "test": "vitest",
+    "test:browser": "node scripts/run-browser-tests.mjs",
     "test:coverage": "vitest run --coverage",
+    "test:types": "tsc --noEmit -p tsconfig.typespec.json",
     "test:run": "vitest run --passWithNoTests",
+    "test:visual": "node scripts/run-browser-tests.mjs --grep @visual",
     "test:workspaces": "npm run test:run --workspaces --if-present",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "typecheck:workspaces": "npm run typecheck --workspaces --if-present"
@@ -73,13 +100,33 @@
     "railml"
   ],
   "license": "MIT",
+  "homepage": "https://rail-schematic-viz.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rail-schematic-viz/rail-schematic-viz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rail-schematic-viz/rail-schematic-viz/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
-    "d3": "^7.9.0",
-    "fast-xml-parser": "^5.4.1"
+    "@playwright/test": "^1.58.2",
+    "fast-xml-parser": "^5.4.1",
+    "storybook": "^10.2.14",
+    "vitepress": "^1.6.4"
+  },
+  "peerDependencies": {
+    "d3": "^7.9.0"
   },
   "devDependencies": {
     "@types/node": "^24.5.2",
     "@vitest/coverage-v8": "^3.2.4",
+    "d3": "^7.9.0",
     "fast-check": "^4.3.0",
     "tsup": "^8.5.0",
     "typescript": "~5.9.3",
