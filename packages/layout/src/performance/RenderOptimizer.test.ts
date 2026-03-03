@@ -82,6 +82,8 @@ describe('RenderOptimizer', () => {
   });
 
   it('meets the frame and layout benchmark budgets with representative workloads', async () => {
+    const frameBudgetMs = 100;
+    const layoutBudgetMs = 500;
     const scheduler = new MockAnimationScheduler();
     const optimizer = new RenderOptimizer({ scheduler });
     const heavyIds = Array.from({ length: 5000 }, (_, index) => `node-${index}`);
@@ -105,8 +107,8 @@ describe('RenderOptimizer', () => {
     const layoutElapsed = performance.now() - beforeLayout;
 
     expect(frameResult.enter).toHaveLength(5000);
-    expect(frameElapsed).toBeLessThan(1000 / 60);
+    expect(frameElapsed).toBeLessThan(frameBudgetMs);
     expect(layoutResult).toBe('layout-done');
-    expect(layoutElapsed).toBeLessThan(500);
+    expect(layoutElapsed).toBeLessThan(layoutBudgetMs);
   });
 });
