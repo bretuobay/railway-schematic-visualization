@@ -28,12 +28,12 @@ function buildInteractiveShell() {
 
         nodes.forEach((node, nodeIndex) => {
           const isActive = nodeIndex === activeIndex;
-          node.dataset.active = isActive ? 'true' : 'false';
+          node.setAttribute('data-active', isActive ? 'true' : 'false');
           node.setAttribute('fill', isActive ? '#f59e0b' : '#ffffff');
           node.setAttribute('aria-current', isActive ? 'true' : 'false');
         });
 
-        announcer.textContent = announcePrefix + ' ' + nodes[activeIndex].dataset.node;
+        announcer.textContent = announcePrefix + ' ' + (nodes[activeIndex].getAttribute('data-node') ?? 'unknown');
       }
 
       nodes.forEach((node, nodeIndex) => {

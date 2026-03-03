@@ -18,6 +18,10 @@ Use the workspace gates first. They are the baseline contract for every change:
 - `npm run test:visual`: runs the `@visual` screenshot suite against the canonical Chrome baseline through the same Playwright wrapper.
 - `npm run storybook`: starts Storybook when installed locally, otherwise validates the scaffold and exits cleanly.
 - `npm run storybook:build`: builds Storybook when installed locally, otherwise validates the scaffold and exits cleanly.
+- WebKit execution note:
+  - Safari coverage remains part of the supported browser matrix.
+  - The Playwright `safari` project runs by default on macOS.
+  - On non-macOS CI hosts, set `PLAYWRIGHT_ENABLE_WEBKIT=true` only if the runner is known to support stable WebKit launches.
 - Browser coverage targets:
   - Chrome 115+
   - Firefox 119+

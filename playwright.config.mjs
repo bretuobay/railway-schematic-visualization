@@ -1,3 +1,33 @@
+const allBrowserProjects = [
+  {
+    name: 'chrome',
+    use: {
+      browserName: 'chromium',
+    },
+  },
+  {
+    name: 'firefox',
+    use: {
+      browserName: 'firefox',
+    },
+  },
+  {
+    name: 'safari',
+    use: {
+      browserName: 'webkit',
+    },
+  },
+  {
+    name: 'edge',
+    use: {
+      browserName: 'chromium',
+    },
+  },
+];
+
+const shouldEnableWebkit = process.env.PLAYWRIGHT_ENABLE_WEBKIT === 'true' || process.platform === 'darwin';
+const projects = allBrowserProjects.filter((project) => shouldEnableWebkit || project.name !== 'safari');
+
 const config = {
   testDir: './tests',
   timeout: 30_000,
@@ -14,32 +44,8 @@ const config = {
     },
     ignoreHTTPSErrors: true,
   },
-  projects: [
-    {
-      name: 'chrome',
-      use: {
-        browserName: 'chromium',
-      },
-    },
-    {
-      name: 'firefox',
-      use: {
-        browserName: 'firefox',
-      },
-    },
-    {
-      name: 'safari',
-      use: {
-        browserName: 'webkit',
-      },
-    },
-    {
-      name: 'edge',
-      use: {
-        browserName: 'chromium',
-      },
-    },
-  ],
+  projects,
 };
 
 export default config;
+export { allBrowserProjects, shouldEnableWebkit };

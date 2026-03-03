@@ -63,19 +63,29 @@ describe('testing infrastructure', () => {
       projects?: Array<{ name?: string; use?: { browserName?: string } }>;
       testDir?: string;
     };
+    const allBrowserProjects = configModule.allBrowserProjects as Array<{
+      name?: string;
+      use?: { browserName?: string };
+    }>;
+    const shouldEnableWebkit = configModule.shouldEnableWebkit as boolean;
 
     expect(config.testDir).toBe('./tests');
-    expect(config.projects?.map((project) => project.name)).toEqual([
+    expect(allBrowserProjects.map((project) => project.name)).toEqual([
       'chrome',
       'firefox',
       'safari',
       'edge',
     ]);
-    expect(config.projects?.map((project) => project.use?.browserName)).toEqual([
+    expect(allBrowserProjects.map((project) => project.use?.browserName)).toEqual([
       'chromium',
       'firefox',
       'webkit',
       'chromium',
     ]);
+    expect(config.projects?.map((project) => project.name)).toEqual(
+      shouldEnableWebkit
+        ? ['chrome', 'firefox', 'safari', 'edge']
+        : ['chrome', 'firefox', 'edge'],
+    );
   });
 });
