@@ -937,20 +937,19 @@ function calculatePathLength(
     const current = points[index];
 
     if (
-      previous?.type !== CoordinateSystemType.Geographic
-      || current?.type !== CoordinateSystemType.Geographic
+      previous === undefined
+      || current === undefined
+      || previous.type !== CoordinateSystemType.Geographic
+      || current.type !== CoordinateSystemType.Geographic
     ) {
       continue;
     }
 
-    const previousPoint = previous;
-    const currentPoint = current;
-
     total += haversineDistance(
-      previousPoint.latitude,
-      previousPoint.longitude,
-      currentPoint.latitude,
-      currentPoint.longitude,
+      previous.latitude,
+      previous.longitude,
+      current.latitude,
+      current.longitude,
     );
   }
 
