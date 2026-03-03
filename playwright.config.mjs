@@ -32,6 +32,7 @@ const config = {
   testDir: './tests',
   timeout: 30_000,
   fullyParallel: true,
+  snapshotPathTemplate: 'tests/{testFilePath}-snapshots/{arg}{ext}',
   reporter: [
     ['list'],
     ['html', { open: 'never', outputFolder: 'playwright-report' }],
