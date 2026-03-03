@@ -943,11 +943,14 @@ function calculatePathLength(
       continue;
     }
 
+    const previousPoint = previous;
+    const currentPoint = current;
+
     total += haversineDistance(
-      previous.latitude,
-      previous.longitude,
-      current.latitude,
-      current.longitude,
+      previousPoint.latitude,
+      previousPoint.longitude,
+      currentPoint.latitude,
+      currentPoint.longitude,
     );
   }
 

@@ -476,6 +476,8 @@ function resolveKnownCoordinates(
         linear: coordinate,
       };
   }
+
+  return {};
 }
 
 function cloneSelectionElement(element: SelectionElement): SelectionElement {
