@@ -47,6 +47,9 @@ describe('docs site', () => {
     expect(home).toContain('layout: home');
     expect(home).toContain('[Getting Started](/getting-started)');
     expect(home).toContain('[Guides](/guides/)');
+    expect(home).toContain('/images/storybook/docs-home-hero.png');
+    expect(home).toContain('[Storybook](/storybook)');
+    expect(home).not.toContain('/Users/festusyeboah/Documents/2025/railway-schematic-visualization');
     expect(gettingStarted).toContain('Hello World In Under 10 Lines');
     expect(gettingStarted).toContain('yarn add @rail-schematic-viz/core d3');
     expect(gettingStarted).toContain('pnpm add @rail-schematic-viz/core d3');
@@ -65,7 +68,12 @@ describe('docs site', () => {
     expect(apiReference).toContain('[Security API](/api/security)');
     expect(apiReference).not.toContain('/Users/festusyeboah/Documents/2025/railway-schematic-visualization');
     expect(storybook).toContain('npm run storybook');
+    expect(storybook).toContain('npm run storybook:screenshots');
+    expect(storybook).toContain('/images/storybook/storybook-control-room.png');
+    expect(storybook).toContain('/images/storybook/storybook-operations-dashboard.png');
     expect(storybook).toContain('Ecosystem/Production Features');
+    expect(storybook).toContain('Workflows/End-to-End');
+    expect(storybook).not.toContain('/Users/festusyeboah/Documents/2025/railway-schematic-visualization');
     expect(guidesIndex).toContain('[Setup Guide](/guides/setup)');
     expect(guidesIndex).toContain('[Production Rollout](/guides/production-rollout)');
   });
@@ -122,6 +130,9 @@ describe('docs site', () => {
     assertFileExists('docs/public/manifest.webmanifest');
     assertFileExists('docs/public/sw.js');
     assertFileExists('docs/public/logo.svg');
+    assertFileExists('docs/public/images/storybook/docs-home-hero.png');
+    assertFileExists('docs/public/images/storybook/storybook-control-room.png');
+    assertFileExists('docs/public/images/storybook/storybook-operations-dashboard.png');
   });
 
   it('documents package structure and versioning in the docs site', () => {

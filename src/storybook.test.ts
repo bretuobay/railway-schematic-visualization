@@ -42,15 +42,32 @@ describe('storybook scaffold', () => {
     assertFileExists('stories/core-renderer.stories.js');
     assertFileExists('stories/framework-adapters.stories.js');
     assertFileExists('stories/ecosystem-features.stories.js');
+    assertFileExists('stories/end-to-end-workflows.stories.js');
+    assertFileExists('stories/_shared/story-shell.js');
+    assertFileExists('stories/_shared/story-fixtures.js');
+    assertFileExists('stories/_shared/story-renderers.js');
+    assertFileExists('stories/_shared/story-code-snippets.js');
+    assertFileExists('scripts/capture-storybook-screenshots.mjs');
     assertFileExists('docs/storybook.md');
 
     const storybookDoc = readWorkspaceFile('docs/storybook.md');
     const coreStory = readWorkspaceFile('stories/core-renderer.stories.js');
+    const workflowsStory = readWorkspaceFile('stories/end-to-end-workflows.stories.js');
+    const screenshotScript = readWorkspaceFile('scripts/capture-storybook-screenshots.mjs');
+    const packageJson = readWorkspaceFile('package.json');
 
     expect(storybookDoc).toContain('npm run check:storybook');
+    expect(storybookDoc).toContain('npm run storybook:screenshots');
     expect(storybookDoc).toContain('Core/Renderer');
+    expect(storybookDoc).toContain('Workflows/End-to-End');
     expect(coreStory).toContain("title: 'Core/Renderer'");
     expect(coreStory).toContain('Minimal SVG Render');
+    expect(coreStory).toContain('Export Preview Board');
+    expect(workflowsStory).toContain("title: 'Workflows/End-to-End'");
+    expect(workflowsStory).toContain('Operations Dashboard');
+    expect(screenshotScript).toContain('const screenshotsDir = resolve(');
+    expect(screenshotScript).toContain("'storybook'");
+    expect(packageJson).toContain('"storybook:screenshots"');
   });
 
   it('declares the runtime storybook dependencies in package metadata', () => {

@@ -31,6 +31,14 @@ The library is organized for real deployments:
 - Adapter packages for framework integration.
 - Ecosystem packages for theming, i18n, plugins, SSR, canvas, security, and regional data ingestion.
 
+## Visual Preview
+
+The published docs now reuse curated Storybook scenes, so the screenshots reflect the same scenario demos you can inspect locally.
+
+![Docs hero preview](/images/storybook/docs-home-hero.png)
+
+Use the dedicated [Storybook](/storybook) page to see which scenarios back these visuals and how to regenerate them.
+
 ## Start Here
 
 If you are new to the library, begin with the [Getting Started](/getting-started) guide. It covers package installation for npm, yarn, and pnpm, a minimal hello-world render, framework examples, and common troubleshooting paths.

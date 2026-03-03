@@ -113,5 +113,6 @@ export default defineComponent({
 
 1. Review the [API Reference](/api-reference) for the full public surface.
 2. Use the [Package Structure](/package-structure) guide to choose the right packages for your stack.
-3. Read the [Testing Guidelines](/testing-guidelines) before adding CI checks.
-4. Follow the [Versioning Policy](/versioning-policy) when you prepare upgrades.
+3. Browse [Storybook](/storybook) when you want richer visual scenarios than the inline examples on this page.
+4. Read the [Testing Guidelines](/testing-guidelines) before adding CI checks.
+5. Follow the [Versioning Policy](/versioning-policy) when you prepare upgrades.

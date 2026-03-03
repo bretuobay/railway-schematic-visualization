@@ -37,4 +37,6 @@ Use `RailSchematicElement` when the host application cannot depend on React or V
 
 ## Next Step
 
+Use [Storybook](/storybook) when you want to compare the adapter surfaces visually before wiring them into your app.
+
 Move to [Production Rollout](/guides/production-rollout) before enabling SSR, canvas, export-heavy flows, or wider browser support.
