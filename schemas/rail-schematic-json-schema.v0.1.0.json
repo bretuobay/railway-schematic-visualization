@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rail-schematic-viz.dev/schemas/rail-schematic-json-schema.v0.1.0.json",
+  "title": "Rail Schematic JSON Document",
+  "description": "Versioned JSON schema for the @rail-schematic-viz core topology document.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "nodes",
+    "edges",
+    "lines"
+  ],
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/line"
+      }
+    }
+  },
+  "$defs": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "screenCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "x",
+        "y"
+      ],
+      "properties": {
+        "type": {
+          "const": "screen"
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "linearCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "trackId",
+        "distance"
+      ],
+      "properties": {
+        "type": {
+          "const": "linear"
+        },
+        "trackId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "distance": {
+          "type": "number"
+        },
+        "endDistance": {
+          "type": "number"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "up",
+            "down"
+          ]
+        }
+      }
+    },
+    "geographicCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "type": {
+          "const": "geographic"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        }
+      }
+    },
+    "coordinate": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/screenCoordinate"
+        },
+        {
+          "$ref": "#/$defs/linearCoordinate"
+        },
+        {
+          "$ref": "#/$defs/geographicCoordinate"
+        }
+      ]
+    },
+    "straightGeometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "straight"
+        }
+      }
+    },
+    "curveGeometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "curvature"
+      ],
+      "properties": {
+        "type": {
+          "const": "curve"
+        },
+        "curvature": {
+          "type": "number"
+        }
+      }
+    },
+    "switchGeometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "switchType",
+        "orientation"
+      ],
+      "properties": {
+        "type": {
+          "const": "switch"
+        },
+        "switchType": {
+          "type": "string",
+          "enum": [
+            "left_turnout",
+            "right_turnout",
+            "double_crossover",
+            "single_crossover"
+          ]
+        },
+        "orientation": {
+          "type": "number"
+        }
+      }
+    },
+    "edgeGeometry": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/straightGeometry"
+        },
+        {
+          "$ref": "#/$defs/curveGeometry"
+        },
+        {
+          "$ref": "#/$defs/switchGeometry"
+        }
+      ]
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "type",
+        "coordinate"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "station",
+            "junction",
+            "signal",
+            "endpoint"
+          ]
+        },
+        "coordinate": {
+          "$ref": "#/$defs/coordinate"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source",
+        "target",
+        "length",
+        "geometry"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "length": {
+          "type": "number"
+        },
+        "geometry": {
+          "$ref": "#/$defs/edgeGeometry"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "edges"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "color": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    }
+  }
+}

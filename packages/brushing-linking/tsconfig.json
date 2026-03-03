@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.ecosystem-base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@rail-schematic-viz/adapters-shared": [
+        "../adapters-shared/src/index.ts"
+      ],
+      "@rail-schematic-viz/core": [
+        "../../src/index.ts"
+      ],
+      "@rail-schematic-viz/layout": [
+        "../layout/src/index.ts"
+      ],
+      "@rail-schematic-viz/overlays": [
+        "../overlays/src/index.ts"
+      ]
+    }
+  },
+  "include": ["src", "vitest.config.ts", "tsup.config.ts"]
+}

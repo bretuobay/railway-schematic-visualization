@@ -14,8 +14,13 @@ describe('package exports', () => {
     expect(root.CoordinateBridge).toBeDefined();
     expect(root.SVGRenderer).toBeDefined();
     expect(root.JSONParser).toBeDefined();
+    expect(root.JSONSerializer).toBeDefined();
     expect(root.RailMLParser).toBeDefined();
+    expect(root.RailMLSerializer).toBeDefined();
     expect(root.ParseError).toBeDefined();
+    expect(root.RailSchematicCLI).toBeDefined();
+    expect(root.runCLI).toBeDefined();
+    expect(root.createDebugLogger).toBeDefined();
   });
 
   it('exports all public submodules', () => {
@@ -25,6 +30,7 @@ describe('package exports', () => {
     expect(errors.BuildError).toBeDefined();
     expect(parsers.JSONSerializer).toBeDefined();
     expect(parsers.RailMLParser).toBeDefined();
+    expect(parsers.RailMLSerializer).toBeDefined();
     expect(renderer.SVGRenderer).toBeDefined();
     expect(renderer.DEFAULT_STYLING).toBeDefined();
   });

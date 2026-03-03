@@ -8,7 +8,7 @@ Core package for Rail Schematic Viz. It provides the railway graph model, typed 
 npm install @rail-schematic-viz/core
 ```
 
-## Package Structure
+## Package Structure and exports
 
 - Main entry: graph model, coordinates, errors, parsers, renderer, and builder re-exports
 - `@rail-schematic-viz/core/builder`: `GraphBuilder`
@@ -95,20 +95,32 @@ if (result.ok) {
 ## CoordinateBridge Example
 
 ```ts
-import { CoordinateBridge, CoordinateSystemType, GraphBuilder } from "@rail-schematic-viz/core";
+import {
+  CoordinateBridge,
+  CoordinateSystemType,
+  GraphBuilder,
+} from "@rail-schematic-viz/core";
 
 const linearGraph = new GraphBuilder()
   .addNode({
     id: "a",
     name: "A",
     type: "station",
-    coordinate: { type: CoordinateSystemType.Linear, trackId: "main", distance: 0 },
+    coordinate: {
+      type: CoordinateSystemType.Linear,
+      trackId: "main",
+      distance: 0,
+    },
   })
   .addNode({
     id: "b",
     name: "B",
     type: "endpoint",
-    coordinate: { type: CoordinateSystemType.Linear, trackId: "main", distance: 100 },
+    coordinate: {
+      type: CoordinateSystemType.Linear,
+      trackId: "main",
+      distance: 100,
+    },
   })
   .addEdge({
     id: "ab",

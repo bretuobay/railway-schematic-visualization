@@ -1,5 +1,5 @@
 export { JSONParser, JSONSerializer } from './JSONParser';
-export { RailMLParser } from './RailMLParser';
+export { RailMLParser, RailMLSerializer } from './RailMLParser';
 export type { Parser, Result } from './Parser';
 export type {
   RailSchematicJsonDocument,

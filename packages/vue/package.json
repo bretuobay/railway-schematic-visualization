@@ -5,6 +5,9 @@
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
+  "browser": "./dist/index.umd.js",
+  "unpkg": "./dist/index.umd.js",
+  "jsdelivr": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
@@ -18,11 +21,27 @@
     }
   },
   "scripts": {
-    "build": "tsup --config tsup.config.ts",
+    "build": "tsup --config tsup.config.ts && node ../../scripts/generate-umd.mjs",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:run": "vitest run --passWithNoTests",
     "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "license": "MIT",
+  "homepage": "https://rail-schematic-viz.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rail-schematic-viz/rail-schematic-viz.git",
+    "directory": "packages/vue"
+  },
+  "bugs": {
+    "url": "https://github.com/rail-schematic-viz/rail-schematic-viz/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "@rail-schematic-viz/adapters-shared": "^0.1.0",

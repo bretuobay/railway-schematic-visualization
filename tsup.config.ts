@@ -12,6 +12,7 @@ export default defineConfig({
     'src/parsers/index.ts',
     'src/renderer/index.ts',
   ],
+  external: ['d3'],
   format: ['esm', 'cjs'],
   outDir: 'dist',
   sourcemap: true,

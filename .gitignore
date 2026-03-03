@@ -23,3 +23,16 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# Generated docs, release, and test artifacts
+.artifacts/
+.release/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+playwright-report/
+test-results/
+storybook-static/
+
+# Keep canonical Chrome visual baselines, ignore incidental browser-specific snapshots
+tests/visual/rail-schematic.visual.spec.mjs-snapshots/*-firefox-*.png
+tests/visual/rail-schematic.visual.spec.mjs-snapshots/*-safari-*.png

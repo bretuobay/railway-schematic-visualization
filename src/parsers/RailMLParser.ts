@@ -1,11 +1,12 @@
-import { XMLParser, XMLValidator } from 'fast-xml-parser';
+import { XMLBuilder, XMLParser, XMLValidator } from 'fast-xml-parser';
 
-import { asEdgeId, asNodeId, CoordinateSystemType } from '../coordinates';
+import { asEdgeId, asLineId, asNodeId, CoordinateSystemType } from '../coordinates';
 import { ParseError } from '../errors';
 import { RailGraph } from '../model';
 import type {
   Coordinate,
   EdgeGeometry,
+  RailLine,
   RailEdge,
   RailNode,
   SwitchGeometry,
@@ -122,7 +123,15 @@ export class RailMLParser implements Parser<string, RailGraph, ParseError> {
       return nodeResult;
     }
 
-    const signalResult = this.parseSignals(topology.value, nodeResult.value);
+    const operationalPointResult = this.parseOperationalPoints(topology.value, nodeResult.value);
+    if (!operationalPointResult.ok) {
+      return operationalPointResult;
+    }
+
+    const signalResult = this.parseSignals(
+      topology.value,
+      [...nodeResult.value, ...operationalPointResult.value],
+    );
     if (!signalResult.ok) {
       return signalResult;
     }
@@ -132,10 +141,15 @@ export class RailMLParser implements Parser<string, RailGraph, ParseError> {
       return edgeResult;
     }
 
+    const lineResult = this.parseLines(topology.value);
+    if (!lineResult.ok) {
+      return lineResult;
+    }
+
     const graph = new RailGraph({
-      nodes: [...nodeResult.value, ...signalResult.value],
+      nodes: [...nodeResult.value, ...operationalPointResult.value, ...signalResult.value],
       edges: edgeResult.value,
-      lines: [],
+      lines: lineResult.value,
     });
     const graphValidation = graph.validate();
 
@@ -236,6 +250,61 @@ export class RailMLParser implements Parser<string, RailGraph, ParseError> {
     }
 
     return ok(nodes);
+  }
+
+  private parseOperationalPoints(
+    topology: XmlRecord,
+    netElements: ReadonlyArray<RailNode>,
+  ): Result<ReadonlyArray<RailNode>, ParseError> {
+    const operationalPointsContainer = topology.operationalPoints;
+
+    if (!isRecord(operationalPointsContainer)) {
+      return ok([]);
+    }
+
+    const referenceCoordinates = new Map(
+      netElements.map((node) => [node.id, node.coordinate] as const),
+    );
+    const operationalPoints = asArray(operationalPointsContainer.operationalPoint);
+    const parsedOperationalPoints: RailNode[] = [];
+
+    for (const [index, entry] of operationalPoints.entries()) {
+      if (!isRecord(entry)) {
+        return err(new ParseError('operationalPoint must be an object.', { fieldPath: `operationalPoints[${index}]` }));
+      }
+
+      const id = readString(entry['@_id']);
+      if (!id) {
+        return err(new ParseError('operationalPoint id is required.', { fieldPath: `operationalPoints[${index}].@_id` }));
+      }
+
+      let coordinateResult = this.extractCoordinate(entry, `operationalPoints[${index}]`);
+
+      if (!coordinateResult.ok) {
+        const nodeRef = readString(entry['@_nodeRef']);
+
+        if (nodeRef) {
+          const inherited = referenceCoordinates.get(asNodeId(nodeRef));
+
+          if (inherited) {
+            coordinateResult = ok(inherited);
+          }
+        }
+      }
+
+      if (!coordinateResult.ok) {
+        return coordinateResult;
+      }
+
+      parsedOperationalPoints.push({
+        id: asNodeId(id),
+        name: readString(entry['@_name']) ?? id,
+        type: inferNodeType(entry['@_type'] ?? 'station'),
+        coordinate: coordinateResult.value,
+      });
+    }
+
+    return ok(parsedOperationalPoints);
   }
 
   private parseSignals(
@@ -344,6 +413,66 @@ export class RailMLParser implements Parser<string, RailGraph, ParseError> {
     }
 
     return ok(edges);
+  }
+
+  private parseLines(topology: XmlRecord): Result<ReadonlyArray<RailLine>, ParseError> {
+    const container = topology.railSchematicLines;
+
+    if (!isRecord(container)) {
+      return ok([]);
+    }
+
+    const lines = asArray(container.line);
+    const parsedLines: RailLine[] = [];
+
+    for (const [index, entry] of lines.entries()) {
+      if (!isRecord(entry)) {
+        return err(new ParseError('line must be an object.', { fieldPath: `railSchematicLines[${index}]` }));
+      }
+
+      const id = readString(entry['@_id']);
+      const name = readString(entry['@_name']);
+
+      if (!id) {
+        return err(new ParseError('line id is required.', { fieldPath: `railSchematicLines[${index}].@_id` }));
+      }
+
+      if (!name) {
+        return err(new ParseError('line name is required.', { fieldPath: `railSchematicLines[${index}].@_name` }));
+      }
+
+      const edgeRefs = asArray(entry.edgeRef);
+      const edges: Array<ReturnType<typeof asEdgeId>> = [];
+
+      for (const [edgeIndex, edgeRef] of edgeRefs.entries()) {
+        if (!isRecord(edgeRef)) {
+          return err(new ParseError('edgeRef must be an object.', {
+            fieldPath: `railSchematicLines[${index}].edgeRef[${edgeIndex}]`,
+          }));
+        }
+
+        const edgeId = readString(edgeRef['@_ref']);
+
+        if (!edgeId) {
+          return err(new ParseError('edgeRef ref is required.', {
+            fieldPath: `railSchematicLines[${index}].edgeRef[${edgeIndex}].@_ref`,
+          }));
+        }
+
+        edges.push(asEdgeId(edgeId));
+      }
+
+      const color = readString(entry['@_color']);
+
+      parsedLines.push({
+        id: asLineId(id),
+        name,
+        edges,
+        ...(color ? { color } : {}),
+      });
+    }
+
+    return ok(parsedLines);
   }
 
   private extractCoordinate(entry: XmlRecord, path: string): Result<Coordinate, ParseError> {
@@ -461,5 +590,128 @@ export class RailMLParser implements Parser<string, RailGraph, ParseError> {
     return ok({
       type: 'straight',
     });
+  }
+}
+
+export class RailMLSerializer {
+  private readonly xmlBuilder = new XMLBuilder({
+    attributeNamePrefix: '@_',
+    format: true,
+    ignoreAttributes: false,
+    suppressBooleanAttributes: false,
+  });
+
+  public serialize(graph: RailGraph): string {
+    const topology: XmlRecord = {
+      netElements: {
+        netElement: Array.from(graph.nodes.values())
+          .filter((node) => node.type !== 'signal')
+          .map((node) => ({
+            '@_id': node.id,
+            '@_name': node.name,
+            '@_type': node.type,
+            ...this.serializeCoordinate(node.coordinate),
+          })),
+      },
+      netRelations: {
+        netRelation: Array.from(graph.edges.values()).map((edge) => ({
+          '@_id': edge.id,
+          '@_source': edge.source,
+          '@_target': edge.target,
+          '@_length': edge.length,
+          ...this.serializeGeometry(edge.geometry),
+        })),
+      },
+    };
+
+    const signals = Array.from(graph.nodes.values()).filter((node) => node.type === 'signal');
+    if (signals.length > 0) {
+      topology.signals = {
+        signal: signals.map((signal) => ({
+          '@_id': signal.id,
+          '@_name': signal.name,
+          ...this.serializeCoordinate(signal.coordinate),
+        })),
+      };
+    }
+
+    if (graph.lines.size > 0) {
+      topology.railSchematicLines = {
+        line: Array.from(graph.lines.values()).map((line) => ({
+          '@_id': line.id,
+          '@_name': line.name,
+          ...(line.color ? { '@_color': line.color } : {}),
+          edgeRef: line.edges.map((edgeId) => ({
+            '@_ref': edgeId,
+          })),
+        })),
+      };
+    }
+
+    const document = {
+      railml: {
+        '@_version': '3.3',
+        infrastructure: {
+          topology,
+        },
+      },
+    };
+
+    return `${this.xmlBuilder.build(document)}\n`;
+  }
+
+  private serializeCoordinate(coordinate: Coordinate): XmlRecord {
+    if (coordinate.type === CoordinateSystemType.Screen) {
+      return {
+        screenPositioningSystem: {
+          '@_x': coordinate.x,
+          '@_y': coordinate.y,
+        },
+      };
+    }
+
+    if (coordinate.type === CoordinateSystemType.Linear) {
+      return {
+        linearPositioningSystem: {
+          '@_trackId': coordinate.trackId,
+          '@_distance': coordinate.distance,
+          ...(coordinate.endDistance !== undefined ? { '@_endDistance': coordinate.endDistance } : {}),
+          ...(coordinate.direction ? { '@_direction': coordinate.direction } : {}),
+        },
+      };
+    }
+
+    return {
+      geometricPositioningSystem: {
+        '@_latitude': coordinate.latitude,
+        '@_longitude': coordinate.longitude,
+      },
+    };
+  }
+
+  private serializeGeometry(geometry: EdgeGeometry): XmlRecord {
+    if (geometry.type === 'switch') {
+      return {
+        switch: {
+          '@_switchType': geometry.switchType,
+          '@_orientation': geometry.orientation,
+        },
+      };
+    }
+
+    if (geometry.type === 'curve') {
+      return {
+        geometry: {
+          '@_type': 'curve',
+          '@_curvature': geometry.curvature,
+        },
+      };
+    }
+
+    return {
+      geometry: {
+        '@_type': 'straight',
+      },
+    };
   }
 }
