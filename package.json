@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Core data model, parsers, coordinate systems, and rendering primitives for railway schematic visualization.",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -49,9 +52,18 @@
   },
   "scripts": {
     "build": "tsup --config tsup.config.ts",
+    "build:workspaces": "npm run build --workspaces --if-present",
+    "check": "node scripts/check-workspaces.mjs . @rail-schematic-viz/layout @rail-schematic-viz/overlays @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
+    "check:build": "node scripts/check-workspaces.mjs --step build . @rail-schematic-viz/layout @rail-schematic-viz/overlays @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
+    "check:phase4": "node scripts/check-workspaces.mjs @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
+    "check:test": "node scripts/check-workspaces.mjs --step test:coverage . @rail-schematic-viz/layout @rail-schematic-viz/overlays @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
+    "check:typecheck": "node scripts/check-workspaces.mjs --step typecheck . @rail-schematic-viz/layout @rail-schematic-viz/overlays @rail-schematic-viz/adapters-shared @rail-schematic-viz/react @rail-schematic-viz/vue @rail-schematic-viz/web-component",
     "test": "vitest",
+    "test:coverage": "vitest run --coverage",
     "test:run": "vitest run --passWithNoTests",
-    "typecheck": "tsc --noEmit -p tsconfig.json"
+    "test:workspaces": "npm run test:run --workspaces --if-present",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "typecheck:workspaces": "npm run typecheck --workspaces --if-present"
   },
   "keywords": [
     "railway",

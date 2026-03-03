@@ -9,20 +9,20 @@ export default defineConfig({
   root: currentDirectory,
   resolve: {
     alias: {
+      '@rail-schematic-viz/adapters-shared': resolve(
+        currentDirectory,
+        '../adapters-shared/src/index.ts',
+      ),
       '@rail-schematic-viz/core': resolve(currentDirectory, '../../src/index.ts'),
       '@rail-schematic-viz/layout': resolve(currentDirectory, '../layout/src/index.ts'),
+      '@rail-schematic-viz/overlays': resolve(currentDirectory, '../overlays/src/index.ts'),
     },
   },
   test: {
     coverage: {
-      provider: 'v8',
-      exclude: [
-        'src/**/*.test.ts',
-        'src/**/*.property.test.ts',
-        'src/**/index.ts',
-        'src/**/types.ts',
-      ],
+      exclude: ['src/**/*.test.ts'],
       include: ['src/**/*.ts'],
+      provider: 'v8',
       reporter: ['text'],
       thresholds: {
         lines: 80,
@@ -30,6 +30,7 @@ export default defineConfig({
       },
     },
     environment: 'node',
-    include: ['src/**/*.test.ts', 'src/**/*.property.test.ts'],
+    globals: true,
+    include: ['src/**/*.test.ts'],
   },
 });

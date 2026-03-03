@@ -70,6 +70,7 @@
   "scripts": {
     "build": "tsup --config tsup.config.ts",
     "test": "vitest",
+    "test:coverage": "vitest run --coverage",
     "test:run": "vitest run --passWithNoTests",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },

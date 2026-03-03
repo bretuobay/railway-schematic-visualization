@@ -5,6 +5,7 @@ export default defineConfig({
     environment: 'node',
     include: ['src/**/*.test.ts'],
     coverage: {
+      provider: 'v8',
       include: ['src/**/*.ts'],
       exclude: [
         'src/**/*.test.ts',
@@ -17,6 +18,11 @@ export default defineConfig({
         'src/coordinates/types.ts',
         'src/types.ts',
       ],
+      reporter: ['text'],
+      thresholds: {
+        lines: 80,
+        statements: 80,
+      },
     },
   },
 });
