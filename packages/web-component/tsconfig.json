@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM"],
+    "baseUrl": ".",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@rail-schematic-viz/adapters-shared": [
+        "../adapters-shared/src/index.ts"
+      ],
+      "@rail-schematic-viz/core": [
+        "../../src/index.ts"
+      ],
+      "@rail-schematic-viz/layout": [
+        "../layout/src/index.ts"
+      ],
+      "@rail-schematic-viz/overlays": [
+        "../overlays/src/index.ts"
+      ]
+    },
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "useDefineForClassFields": true,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": ["src", "vitest.config.ts", "tsup.config.ts"]
+}

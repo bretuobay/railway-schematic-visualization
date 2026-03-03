@@ -1,0 +1,19 @@
+<railml>
+  <infrastructure>
+    <topology>
+      <netElements>
+        <netElement id="geo-a" name="Geo A" type="station">
+          <geometricPositioningSystem latitude="51.5007" longitude="-0.1246" />
+        </netElement>
+        <netElement id="geo-b" name="Geo B" type="endpoint">
+          <geometricPositioningSystem latitude="51.5010" longitude="-0.1200" />
+        </netElement>
+      </netElements>
+      <netRelations>
+        <netRelation id="geo-edge" source="geo-a" target="geo-b" length="250">
+          <geometry type="straight" />
+        </netRelation>
+      </netRelations>
+    </topology>
+  </infrastructure>
+</railml>

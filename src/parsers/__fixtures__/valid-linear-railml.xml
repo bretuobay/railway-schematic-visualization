@@ -1,0 +1,19 @@
+<railml>
+  <infrastructure>
+    <topology>
+      <netElements>
+        <netElement id="lin-a" name="Lin A" type="station">
+          <linearPositioningSystem trackId="track-1" distance="0" direction="up" />
+        </netElement>
+        <netElement id="lin-b" name="Lin B" type="endpoint">
+          <linearPositioningSystem trackId="track-1" distance="300" endDistance="305" direction="up" />
+        </netElement>
+      </netElements>
+      <netRelations>
+        <netRelation id="lin-edge" source="lin-a" target="lin-b" length="300">
+          <geometry type="curve" curvature="1.25" />
+        </netRelation>
+      </netRelations>
+    </topology>
+  </infrastructure>
+</railml>

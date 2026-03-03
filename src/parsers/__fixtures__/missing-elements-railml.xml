@@ -1,0 +1,11 @@
+<railml>
+  <infrastructure>
+    <topology>
+      <netElements>
+        <netElement id="node-a" name="Node A" type="station">
+          <screenPositioningSystem x="0" y="0" />
+        </netElement>
+      </netElements>
+    </topology>
+  </infrastructure>
+</railml>
